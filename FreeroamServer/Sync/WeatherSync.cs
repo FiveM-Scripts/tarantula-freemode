@@ -1,0 +1,46 @@
+﻿using CitizenFX.Core;
+using System;
+using System.Threading.Tasks;
+
+namespace FreeroamServer.Sync
+{
+	class WeatherSync : BaseScript
+	{
+		private int weatherSwitchTime;
+		private string currentWeather;
+
+		private string[] weatherTypes =
+		{
+			"CLEAR",
+			"EXTRASUNNY",
+			"CLOUDS",
+			"OVERCAST",
+			"RAIN",
+			"CLEARING",
+			"THUNDER",
+			"SMOG",
+			"FOGGY"
+		};
+
+		public WeatherSync()
+		{
+			Tick += OnTick;
+		}
+
+		private async Task OnTick()
+		{
+			weatherSwitchTime--;
+			int transitionTime = 0;
+			if (weatherSwitchTime <= 0)
+			{
+				Random random = new Random();
+				currentWeather = weatherTypes[random.Next(0, weatherTypes.Length - 1)];
+				weatherSwitchTime = random.Next(120, 600);
+				transitionTime = random.Next(15, 60);
+			}
+			TriggerClientEvent("freeroam:weatherUpdate", currentWeather, transitionTime);
+
+			await Delay(1000);
+		}
+	}
+}
