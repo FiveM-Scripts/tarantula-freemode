@@ -48,12 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Freemode\RelationshipGroupForcer.cs" />
-    <Compile Include="Freemode\RelationshipGroupHolder.cs" />
+    <Compile Include="Freemode\Blips\SessionBlips.cs" />
+    <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
+    <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
+    <Compile Include="Missions\MissionCollection\Delivery2.cs" />
     <Compile Include="Missions\MissionCollection\Delivery1.cs" />
     <Compile Include="Missions\MissionInterface.cs" />
+    <Compile Include="Missions\MissionMusic.cs" />
     <Compile Include="Missions\MissionStarter.cs" />
     <Compile Include="Missions\MissionState.cs" />
+    <Compile Include="Missions\MissionHolders\DeliveryMissionHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sync\TimeSync.cs" />
     <Compile Include="Sync\WeatherSync.cs" />

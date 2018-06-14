@@ -1,7 +1,7 @@
 ﻿using CitizenFX.Core;
 using System.Threading.Tasks;
 
-namespace Freeroam.Freemode
+namespace Freeroam.Freemode.Relationship
 {
 	class RelationshipGroupForcer : BaseScript
 	{

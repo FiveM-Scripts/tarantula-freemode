@@ -1,6 +1,6 @@
 ﻿using CitizenFX.Core;
 
-namespace Freeroam.Freemode
+namespace Freeroam.Freemode.Relationship
 {
 	public static class RelationshipGroupHolder
 	{

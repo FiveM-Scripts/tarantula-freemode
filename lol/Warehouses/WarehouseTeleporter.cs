@@ -97,6 +97,7 @@ namespace Freeroam.Warehouses
 			{
 				if (!Screen.Fading.IsFadingOut && !Screen.Fading.IsFadedOut)
 					Screen.Fading.FadeOut(1000);
+				Game.PlayerPed.IsInvincible = true;
 				await Delay(4000);
 				while (!API.IsIplActive("ex_exec_warehouse_placement"))
 					await Delay(1000);
@@ -111,6 +112,7 @@ namespace Freeroam.Warehouses
 
 				WarehouseState.IsInsideWarehouse = tp == insideWarehouse.TeleportPoint;
 				Screen.Fading.FadeIn(1000);
+				Game.PlayerPed.IsInvincible = false;
 
 				return true;
 			}

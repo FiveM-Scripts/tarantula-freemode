@@ -1,8 +1,11 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Freeroam.Missions;
 using Freeroam.Missions.MissionCollection;
+using Freeroam.Missions.MissionHolders;
 using NativeUI;
+using System;
 using System.Threading.Tasks;
 
 namespace Freeroam.Warehouses
@@ -28,7 +31,8 @@ namespace Freeroam.Warehouses
 					case 0:
 						actionMenu.Visible = false;
 						Screen.Fading.FadeOut(1000);
-						await MissionStarter.RequestPrepareMission(new Delivery1());
+						await MissionStarter.RequestPrepareMission(/*(IMission) Activator.CreateInstance(
+							DeliveryMissionHolder.Missions[API.GetRandomIntInRange(0, DeliveryMissionHolder.Missions.Length - 1)])*/ new Delivery2());
 						await WarehouseTeleporter.RequestTeleport(WarehouseTeleport.Outside);
 						await Delay(1000);
 						MissionStarter.RequestStartMission();
