@@ -39,7 +39,7 @@ namespace Freeroam.Warehouses
 							while (API.IsAmbientSpeechPlaying(ped.Handle))
 								await Delay(100);
 							if (API.GetRandomIntInRange(0, 100) < 50)
-								peds[API.GetRandomIntInRange(0, peds.Count - 1)].PlayAmbientSpeech("CHAT_RESP", SpeechModifier.ForceShouted);
+								peds[API.GetRandomIntInRange(0, peds.Count)].PlayAmbientSpeech("CHAT_RESP", SpeechModifier.ForceShouted);
 						}
 					}
 				}

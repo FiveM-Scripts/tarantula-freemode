@@ -31,8 +31,8 @@ namespace Freeroam.Warehouses
 					case 0:
 						actionMenu.Visible = false;
 						Screen.Fading.FadeOut(1000);
-						await MissionStarter.RequestPrepareMission(/*(IMission) Activator.CreateInstance(
-							DeliveryMissionHolder.Missions[API.GetRandomIntInRange(0, DeliveryMissionHolder.Missions.Length - 1)])*/ new Delivery2());
+						await MissionStarter.RequestPrepareMission((IMission) Activator.CreateInstance(
+							DeliveryMissionHolder.Missions[API.GetRandomIntInRange(0, DeliveryMissionHolder.Missions.Length)]));
 						await WarehouseTeleporter.RequestTeleport(WarehouseTeleport.Outside);
 						await Delay(1000);
 						MissionStarter.RequestStartMission();

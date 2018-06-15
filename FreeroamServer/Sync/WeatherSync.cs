@@ -31,12 +31,12 @@ namespace FreeroamServer.Sync
 		{
 			weatherSwitchTime--;
 			int transitionTime = 0;
-			if (weatherSwitchTime <= 0)
+			if (weatherSwitchTime < 1)
 			{
 				Random random = new Random();
 				currentWeather = weatherTypes[random.Next(0, weatherTypes.Length - 1)];
 				weatherSwitchTime = random.Next(120, 600);
-				transitionTime = random.Next(15, 60);
+				transitionTime = 60;
 			}
 			TriggerClientEvent("freeroam:weatherUpdate", currentWeather, transitionTime);
 

@@ -37,7 +37,7 @@ namespace Freeroam.Missions.MissionCollection
 			Ped enemy3 = await CreateEnemyPed(PedHash.Korean02GMY, new Vector3(780.2f, 571.4f, 127.5f), 330.4f);
 			enemy3._StartScenario("WORLD_HUMAN_SMOKING");
 			enemyVehicles = new List<Vehicle>();
-			Vehicle vehicle1 = await EntityUtil.CreateVehicle(VehicleHash.Sentinel, new Vector3(851.3f, 505f, 125.9f), 343f);
+			Vehicle vehicle1 = await EntityUtil.CreateVehicle(VehicleHash.Sentinel, new Vector3(851.3f, 504f, 125.9f), 343f);
 			enemyVehicles.Add(vehicle1);
 			Ped enemy4 = await CreateEnemyPed(PedHash.KorLieut01GMY, new Vector3());
 			enemy4.SetIntoVehicle(vehicle1, VehicleSeat.Driver);
