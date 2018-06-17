@@ -8,7 +8,8 @@ namespace Freeroam.Missions.MissionHolders
 		public static Type[] Missions { get; } =
 		{
 			typeof(Delivery1),
-			typeof(Delivery2)
+			typeof(Delivery2),
+			typeof(Delivery3)
 		};
 	}
 }

@@ -1,6 +1,4 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
-using Freeroam.Freemode.Relationship;
 using Freeroam.Missions.MissionHelpers;
 using Freeroam.Util;
 using System.Collections.Generic;

@@ -41,7 +41,7 @@ namespace Freeroam.Missions.MissionHelpers
 			}
 			else if (deliveryCar.IsBroken())
 			{
-				MissionHelper.DrawTaskSubtitle("~r~The Rocket Voltic was destroyed.");
+				MissionHelper.DrawTaskSubtitle("~r~The Vehicle was destroyed.");
 				MissionStarter.RequestStopCurrentMission();
 			}
 		}
@@ -98,6 +98,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (wantedLevelWarned)
 				{
+					Screen.ShowSubtitle("Bring the Vehicle to the ~g~Warehouse~w~.", 5000);
 					importBlip.Alpha = 255;
 					importBlip.ShowRoute = true;
 					wantedLevelWarned = false;
