@@ -35,7 +35,10 @@ namespace Freeroam.Missions.MissionHelpers
 		public void HandleMissionFailedCheck()
 		{
 			if (Game.PlayerPed.IsDead)
+			{
+				MissionHelper.DrawTaskSubtitle("~r~You died.");
 				MissionStarter.RequestStopCurrentMission();
+			}
 			else if (deliveryCar.IsBroken())
 			{
 				MissionHelper.DrawTaskSubtitle("~r~The Rocket Voltic was destroyed.");
