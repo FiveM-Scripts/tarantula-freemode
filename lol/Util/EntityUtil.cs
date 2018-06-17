@@ -70,5 +70,10 @@ namespace Freeroam.Util
 		{
 			API.TaskStartScenarioInPlace(ped.Handle, scenario, 0, true);
 		}
+
+		public static bool IsBroken(this Vehicle vehicle)
+		{
+			return vehicle.IsDead || vehicle.EngineHealth == 0f || vehicle.PetrolTankHealth == 0f;
+		}
 	}
 }

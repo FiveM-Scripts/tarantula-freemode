@@ -29,6 +29,8 @@ namespace FreeroamServer.Sync
 
 		private async Task OnTick()
 		{
+			await Delay(1000);
+
 			weatherSwitchTime--;
 			int transitionTime = 0;
 			if (weatherSwitchTime < 1)
@@ -39,8 +41,6 @@ namespace FreeroamServer.Sync
 				transitionTime = 60;
 			}
 			TriggerClientEvent("freeroam:weatherUpdate", currentWeather, transitionTime);
-
-			await Delay(1000);
 		}
 	}
 }

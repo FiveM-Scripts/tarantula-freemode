@@ -10,15 +10,11 @@ namespace Freeroam.Warehouses
 {
 	class WarehousePeds : BaseScript
 	{
-		private RelationshipGroup pedRelationshipGroup;
 		private List<Ped> peds;
 		private bool pedsSpawned;
 		
 		public WarehousePeds()
 		{
-			pedRelationshipGroup = World.AddRelationshipGroup("_WAREHOUSE_PEDS");
-			pedRelationshipGroup.SetRelationshipBetweenGroups(RelationshipGroupHolder.PlayerRelationship, Relationship.Respect, true);
-
 			EventHandlers["freemode:warehouseIn"] += new Action(SpawnWarehousePeds);
 			EventHandlers["freemode:warehouseOut"] += new Action(DespawnWarehousePeds);
 
@@ -27,6 +23,8 @@ namespace Freeroam.Warehouses
 
 		private async Task OnTick()
 		{
+			await Delay(1000);
+
 			if (WarehouseState.IsInsideWarehouse)
 			{
 				foreach (Ped ped in peds)
@@ -44,8 +42,6 @@ namespace Freeroam.Warehouses
 					}
 				}
 			}
-
-			await Delay(1000);
 		}
 
 		private async void SpawnWarehousePeds()
@@ -89,7 +85,7 @@ namespace Freeroam.Warehouses
 				await Delay(1);
 
 			Ped ped = await EntityUtil.CreatePed(model, PedType.PED_TYPE_SPECIAL, pos, heading, false);
-			ped.RelationshipGroup = pedRelationshipGroup;
+			ped.RelationshipGroup = RelationshipGroupHolder.WarehousePeds;
 			ped.CanRagdoll = false;
 			ped.AlwaysKeepTask = true;
 			peds.Add(ped);

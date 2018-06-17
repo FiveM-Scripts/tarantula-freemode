@@ -77,7 +77,7 @@ namespace Freeroam.Warehouses
 			{
 				API.RequestIpl("ex_exec_warehouse_placement");
 				API.EnableInteriorProp(API.GetInteriorAtCoords(tp.X, tp.Y, tp.Z), "Basic_style_set");
-				API.SetEmitterRadioStation("DLC_IE_Warehouse_Radio_01", "RADIO_03_HIPHOP_NEW");
+				API.SetEmitterRadioStation("DLC_IE_Warehouse_Radio_01", "RADIO_21_DLC_XM17");
 				insideWarehouse = warehouse;
 				WarehouseState.LastWarehouse = warehouse;
 				await RequestTeleport(WarehouseTeleport.Inside);

@@ -17,6 +17,7 @@ namespace Freeroam.Warehouses
 			if (WarehouseState.IsInsideWarehouse)
 			{
 				Game.Player.DisableFiringThisFrame();
+				Game.Player.WantedLevel = 0;
 			}
 		}
 	}

@@ -14,6 +14,8 @@ namespace Freeroam.Freemode.Blips
 
 		private async Task OnTick()
 		{
+			await Delay(100);
+
 			foreach (Player player in Players.Where(player => Game.Player != player))
 			{
 				Ped playerPed = player.Character;
@@ -24,8 +26,6 @@ namespace Freeroam.Freemode.Blips
 				FadeBlipByDistance(playerBlip);
 				API.ShowHeadingIndicatorOnBlip(playerBlip.Handle, true);
 			}
-
-			await Delay(100);
 		}
 
 		private void FadeBlipByDistance(Blip blip)

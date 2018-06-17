@@ -15,6 +15,8 @@ namespace Freeroam.Missions
 
 		private async Task OnTick()
 		{
+			await Task.FromResult(0);
+
 			if (currentMission != null && started)
 			{
 				await currentMission.OnTick();

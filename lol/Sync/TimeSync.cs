@@ -13,10 +13,11 @@ namespace Freeroam.Sync
 
 		private async Task OnTick()
 		{
+			await Delay(1000);
+
 			int h = 0, m = 0, s = 0;
 			API.NetworkGetServerTime(ref h, ref m, ref s);
 			API.NetworkOverrideClockTime(h, m, s);
-			await Delay(1000);
 		}
 	}
 }

@@ -53,6 +53,8 @@
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery2.cs" />
     <Compile Include="Missions\MissionCollection\Delivery1.cs" />
+    <Compile Include="Missions\MissionHelpers\DeliveryMissionHelper.cs" />
+    <Compile Include="Missions\MissionHelpers\MissionHelper.cs" />
     <Compile Include="Missions\MissionInterface.cs" />
     <Compile Include="Missions\MissionMusic.cs" />
     <Compile Include="Missions\MissionStarter.cs" />

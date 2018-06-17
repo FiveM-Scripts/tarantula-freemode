@@ -14,7 +14,7 @@ namespace Freeroam.Freemode.Relationship
 		{
 			await Delay(100);
 
-			Game.PlayerPed.RelationshipGroup = RelationshipGroupHolder.PlayerRelationship;
+			Game.PlayerPed.RelationshipGroup = RelationshipGroupHolder.Player;
 		}
 	}
 }
