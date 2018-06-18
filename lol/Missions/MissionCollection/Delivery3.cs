@@ -32,7 +32,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.Alpha = 0;
 
-			MissionHelper.DrawTaskSubtitle("Locate the ~b~Armored Shafter~w~.");
+			MissionHelper.DrawTaskSubtitle($"Locate the ~b~{deliveryCar._GetLabel()}~w~.");
 			BaseScript.TriggerEvent("mtracker:settargets", new int[] { deliveryCar.Handle });
 			BaseScript.TriggerEvent("mtracker:start");
 		}

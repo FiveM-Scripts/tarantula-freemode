@@ -53,6 +53,7 @@
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
+    <Compile Include="Phone\PhoneStarter.cs" />
     <Compile Include="RichPresenceHandler.cs" />
     <Compile Include="Missions\MissionCollection\Delivery2.cs" />
     <Compile Include="Missions\MissionCollection\Delivery1.cs" />

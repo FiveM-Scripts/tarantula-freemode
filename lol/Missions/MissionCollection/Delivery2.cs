@@ -56,7 +56,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.ShowRoute = true;
 
-			MissionHelper.DrawTaskSubtitle("Steal the ~b~Rocket Voltic~w~.");
+			MissionHelper.DrawTaskSubtitle($"Steal the ~b~{deliveryCar._GetLabel()}~w~.");
 		}
 
 		public async Task OnTick()

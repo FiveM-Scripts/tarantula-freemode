@@ -27,7 +27,7 @@ namespace Freeroam.Missions.MissionHelpers
 			enemies = new List<Ped>();
 
 			this.deliveryCar = deliveryCar;
-			vehicleLabel = deliveryCar.GetLabel();
+			vehicleLabel = deliveryCar._GetLabel();
 			this.missionMusic = missionMusic;
 		}
 
@@ -38,7 +38,7 @@ namespace Freeroam.Missions.MissionHelpers
 				MissionHelper.DrawTaskSubtitle("~r~You died.");
 				MissionStarter.RequestStopCurrentMission();
 			}
-			else if (deliveryCar.IsBroken())
+			else if (deliveryCar._IsBroken())
 			{
 				MissionHelper.DrawTaskSubtitle($"~r~The {vehicleLabel} was destroyed.");
 				MissionStarter.RequestStopCurrentMission();
@@ -103,7 +103,7 @@ namespace Freeroam.Missions.MissionHelpers
 						Color.FromArgb(127, 0, 0, 255));
 				if (World.GetDistance(deliveryCar.Position, importPoint) < 5f)
 				{
-					deliveryCar.ApplyForce(-deliveryCar.Velocity / 3);
+					deliveryCar.ApplyForce(-deliveryCar.Velocity / 2);
 					Game.PlayerPed.Task.DriveTo(deliveryCar, importPoint, 1f, 1f);
 					await WarehouseTeleporter.RequestTeleport(WarehouseTeleport.Inside);
 					deliveryCar.Delete();

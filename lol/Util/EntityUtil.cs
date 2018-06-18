@@ -77,12 +77,12 @@ namespace Freeroam.Util
 
 	public static class VehicleUtil
 	{
-		public static bool IsBroken(this Vehicle vehicle)
+		public static bool _IsBroken(this Vehicle vehicle)
 		{
 			return vehicle.IsDead || vehicle.EngineHealth == 0f || vehicle.PetrolTankHealth == 0f;
 		}
 
-		public static string GetLabel(this Vehicle vehicle)
+		public static string _GetLabel(this Vehicle vehicle)
 		{
 			return API.GetLabelText(API.GetDisplayNameFromVehicleModel((uint)vehicle.Model.Hash));
 		}
