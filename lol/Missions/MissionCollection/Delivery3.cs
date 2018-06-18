@@ -2,7 +2,6 @@
 using CitizenFX.Core.Native;
 using Freeroam.Missions.MissionHelpers;
 using Freeroam.Util;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Freeroam.Missions.MissionCollection
@@ -16,7 +15,7 @@ namespace Freeroam.Missions.MissionCollection
 
 		public async Task Prepare()
 		{
-			deliveryCar = await EntityUtil.CreateVehicle(VehicleHash.Schafter5, new Vector3(-2307.3f, 369.3f, 174.2f), 323.8f);
+			deliveryCar = await MissionHelper.CreateRobustVehicle(VehicleHash.Schafter5, new Vector3(-2307.3f, 369.3f, 174.2f), 323.8f);
 
 			missionMusic = new MissionMusic();
 			missionMusic.PlayStartMusic();
@@ -45,6 +44,8 @@ namespace Freeroam.Missions.MissionCollection
 			missionHelper.HandleMissionFailedCheck();
 			if (!missionHelper.IsDeliveryTaskStarted())
 			{
+				if (!API.IsPauseMenuActive())
+					BaseScript.TriggerEvent("mtracker:start");
 				if (Game.PlayerPed.CurrentVehicle == deliveryCar)
 				{
 					BaseScript.TriggerEvent("mtracker:removealltargets");

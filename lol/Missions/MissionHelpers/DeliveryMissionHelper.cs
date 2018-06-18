@@ -1,7 +1,4 @@
 ﻿using CitizenFX.Core;
-using CitizenFX.Core.Native;
-using CitizenFX.Core.UI;
-using Freeroam.Freemode.Relationship;
 using Freeroam.Util;
 using Freeroam.Warehouses;
 using System.Collections.Generic;
@@ -14,6 +11,7 @@ namespace Freeroam.Missions.MissionHelpers
 	{
 		private Vector3 importPoint;
 		private Vehicle deliveryCar;
+		private string vehicleLabel;
 		private MissionMusic missionMusic;
 		private Blip importBlip;
 		private List<Ped> enemies;
@@ -29,6 +27,7 @@ namespace Freeroam.Missions.MissionHelpers
 			enemies = new List<Ped>();
 
 			this.deliveryCar = deliveryCar;
+			vehicleLabel = deliveryCar.GetLabel();
 			this.missionMusic = missionMusic;
 		}
 
@@ -41,22 +40,16 @@ namespace Freeroam.Missions.MissionHelpers
 			}
 			else if (deliveryCar.IsBroken())
 			{
-				MissionHelper.DrawTaskSubtitle("~r~The Vehicle was destroyed.");
+				MissionHelper.DrawTaskSubtitle($"~r~The {vehicleLabel} was destroyed.");
 				MissionStarter.RequestStopCurrentMission();
 			}
 		}
 
 		public async Task<Ped> CreateNeutralEnemyPed(Model model, Vector3 pos, float heading = 0f, WeaponHash weaponHash = WeaponHash.Unarmed)
 		{
-			Ped ped = await EntityUtil.CreatePed(model, PedType.PED_TYPE_MISSION, pos, heading);
-			if (weaponHash != WeaponHash.Unarmed)
-				ped.Weapons.Give(weaponHash, int.MaxValue, false, true);
-			ped.RelationshipGroup = RelationshipGroupHolder.NeutralEnemyPeds;
-			ped.IsEnemy = true;
-			API.SetPedEnemyAiBlip(ped.Handle, true);
-			API.HideSpecialAbilityLockonOperation(ped.Handle, false);
-			enemies.Add(ped);
-			return ped;
+			Ped enemy = await MissionHelper.CreateNeutralEnemyPed(model, pos, heading, weaponHash);
+			enemies.Add(enemy);
+			return enemy;
 		}
 
 		public async Task HandleDeliveryDropOff()
@@ -65,6 +58,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (!insideCar)
 				{
+					MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
 					deliveryCar.AttachedBlip.Alpha = 0;
 					deliveryCar.AttachedBlip.ShowRoute = false;
 					importBlip.Alpha = 255;
@@ -76,6 +70,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (insideCar)
 				{
+					MissionHelper.DrawTaskSubtitle($"Get back into the ~b~{vehicleLabel}~w~.");
 					deliveryCar.AttachedBlip.Alpha = 255;
 					deliveryCar.AttachedBlip.ShowRoute = true;
 					importBlip.Alpha = 0;
@@ -88,7 +83,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (!wantedLevelWarned)
 				{
-					Screen.ShowSubtitle("Lose your Wanted Level.", 5000);
+					MissionHelper.DrawTaskSubtitle("Lose your Wanted Level.");
 					importBlip.Alpha = 0;
 					importBlip.ShowRoute = false;
 					wantedLevelWarned = true;
@@ -98,7 +93,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (wantedLevelWarned)
 				{
-					Screen.ShowSubtitle("Bring the Vehicle to the ~g~Warehouse~w~.", 5000);
+					MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
 					importBlip.Alpha = 255;
 					importBlip.ShowRoute = true;
 					wantedLevelWarned = false;
@@ -123,7 +118,7 @@ namespace Freeroam.Missions.MissionHelpers
 		{
 			if (!delivering)
 			{
-				MissionHelper.DrawTaskSubtitle("Bring the ~b~Rocket Voltic~w~ to the ~g~Warehouse~w~.");
+				MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
 				importBlip = World.CreateBlip(importPoint);
 				importBlip.Color = BlipColor.Green;
 				importBlip.ShowRoute = true;

@@ -16,7 +16,7 @@ namespace Freeroam.Missions.MissionCollection
 
 		public async Task Prepare()
 		{
-			deliveryCar = await EntityUtil.CreateVehicle(VehicleHash.Voltic2, new Vector3(667.4f, -756f, 23.7f), 171.5f);
+			deliveryCar = await MissionHelper.CreateRobustVehicle(VehicleHash.Voltic2, new Vector3(667.4f, -756f, 23.7f), 171.5f);
 
 			missionMusic = new MissionMusic();
 			missionMusic.PlayStartMusic();
@@ -67,10 +67,7 @@ namespace Freeroam.Missions.MissionCollection
 			if (!missionHelper.IsDeliveryTaskStarted())
 			{
 				if (Game.PlayerPed.CurrentVehicle == deliveryCar)
-				{
-					MissionHelper.DrawTaskSubtitle("Bring the ~b~Rocket Voltic~w~ to the ~g~Warehouse~w~.");
 					missionHelper.CreateDeliveryTask();
-				}
 			}
 			else
 				await missionHelper.HandleDeliveryDropOff();

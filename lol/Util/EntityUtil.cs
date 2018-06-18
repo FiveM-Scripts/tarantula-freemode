@@ -47,6 +47,7 @@ namespace Freeroam.Util
 				model.Request();
 				while (!model.IsLoaded)
 					await BaseScript.Delay(1);
+				model.MarkAsNoLongerNeeded();
 
 				return new Ped(API.CreatePed((int) pedType, (uint) model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
 			}
@@ -63,6 +64,8 @@ namespace Freeroam.Util
 
 				return new Vehicle(API.CreateVehicle((uint) model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
 			}
+			model.MarkAsNoLongerNeeded();
+
 			return null;
 		}
 
@@ -70,10 +73,18 @@ namespace Freeroam.Util
 		{
 			API.TaskStartScenarioInPlace(ped.Handle, scenario, 0, true);
 		}
+	}
 
+	public static class VehicleUtil
+	{
 		public static bool IsBroken(this Vehicle vehicle)
 		{
 			return vehicle.IsDead || vehicle.EngineHealth == 0f || vehicle.PetrolTankHealth == 0f;
+		}
+
+		public static string GetLabel(this Vehicle vehicle)
+		{
+			return API.GetLabelText(API.GetDisplayNameFromVehicleModel((uint)vehicle.Model.Hash));
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Freeroam.Missions.MissionCollection
 
 		public async Task Prepare()
 		{
-			deliveryCar = await EntityUtil.CreateVehicle(VehicleHash.Kuruma2, new Vector3(666.4f, 676.9f, 128.5f), 193.4f);
+			deliveryCar = await MissionHelper.CreateRobustVehicle(VehicleHash.Kuruma2, new Vector3(666.4f, 676.9f, 128.5f), 193.4f);
 
 			missionMusic = new MissionMusic();
 			missionMusic.PlayStartMusic();
@@ -76,7 +76,6 @@ namespace Freeroam.Missions.MissionCollection
 					Ped enemy3 = await missionHelper.CreateNeutralEnemyPed(PedHash.Korean02GMY, new Vector3(), 0f, WeaponHash.AssaultRifleMk2);
 					enemy3.SetIntoVehicle(heli, VehicleSeat.RightRear);
 
-					MissionHelper.DrawTaskSubtitle("Bring the ~b~Armored Kuruma~w~ to the ~g~Warehouse~w~.");
 					missionHelper.CreateDeliveryTask();
 				}
 			}
