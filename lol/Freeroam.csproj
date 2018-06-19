@@ -49,11 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Freemode\Blips\SessionBlips.cs" />
+    <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
+    <Compile Include="Phone\PhoneInput.cs" />
     <Compile Include="Phone\PhoneStarter.cs" />
+    <Compile Include="Phone\PhoneState.cs" />
     <Compile Include="RichPresenceHandler.cs" />
     <Compile Include="Missions\MissionCollection\Delivery2.cs" />
     <Compile Include="Missions\MissionCollection\Delivery1.cs" />
