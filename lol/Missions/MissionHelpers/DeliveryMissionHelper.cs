@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using Freeroam.Util;
 using Freeroam.Warehouses;
 using System.Collections.Generic;
@@ -103,8 +104,7 @@ namespace Freeroam.Missions.MissionHelpers
 						Color.FromArgb(127, 0, 0, 255));
 				if (World.GetDistance(deliveryCar.Position, importPoint) < 5f)
 				{
-					deliveryCar.ApplyForce(-deliveryCar.Velocity / 2);
-					Game.PlayerPed.Task.DriveTo(deliveryCar, importPoint, 1f, 1f);
+					API.SetVehicleHalt(deliveryCar.Handle, 3f, 1, true);
 					await WarehouseTeleporter.RequestTeleport(WarehouseTeleport.Inside);
 					deliveryCar.Delete();
 					// TODO: Properly save
