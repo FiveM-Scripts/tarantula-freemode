@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Freemode\Blips\SessionBlips.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
+    <Compile Include="Freemode\FreemodeMenu.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />

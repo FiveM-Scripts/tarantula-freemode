@@ -11,7 +11,7 @@ namespace Freeroam.Missions.MissionHelpers
 	{
 		public static void DrawTaskSubtitle(string text)
 		{
-			Screen.ShowSubtitle(text, 5000);
+			Screen.ShowSubtitle(text, 10000);
 		}
 
 		public static async Task<Ped> CreateNeutralEnemyPed(Model model, Vector3 pos, float heading = 0f, WeaponHash weaponHash = WeaponHash.Unarmed)

@@ -1,4 +1,6 @@
 ﻿using CitizenFX.Core;
+using Freeroam.Phone;
+using System;
 using System.Threading.Tasks;
 
 namespace Freeroam.Warehouses
@@ -7,6 +9,15 @@ namespace Freeroam.Warehouses
 	{
 		public WarehouseBehaviour()
 		{
+			EventHandlers["freemode:warehouseIn"] += new Action(delegate
+			{
+				PhoneState.Block = true;
+			});
+			EventHandlers["freemode:warehouseOut"] += new Action(delegate
+			{
+				PhoneState.Block = false;
+			});
+
 			Tick += OnTick;
 		}
 

@@ -30,6 +30,7 @@ namespace Freeroam.Phone
 
 			if (PhoneState.IsShown)
 			{
+				bool pressed = false;
 				if (Game.IsControlJustPressed(0, Control.PhoneCancel))
 				{
 					PhoneState.IsShown = false;
@@ -38,13 +39,28 @@ namespace Freeroam.Phone
 					phoneScaleform.Dispose();
 				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneUp))
+				{
 					phoneScaleform.CallFunction("SET_INPUT_EVENT", 1);
+					pressed = true;
+				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneRight))
+				{
 					phoneScaleform.CallFunction("SET_INPUT_EVENT", 2);
+					pressed = true;
+				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneDown))
+				{
 					phoneScaleform.CallFunction("SET_INPUT_EVENT", 3);
+					pressed = true;
+				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneLeft))
+				{
 					phoneScaleform.CallFunction("SET_INPUT_EVENT", 4);
+					pressed = true;
+				}
+
+				if (pressed)
+					Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default");
 			}
 		}
 	}

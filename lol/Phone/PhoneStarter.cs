@@ -18,7 +18,7 @@ namespace Freeroam.Phone
 		{
 			await Task.FromResult(0);
 
-			if (Game.IsControlJustPressed(0, Control.Phone) && !PhoneState.IsShown && !WarehouseState.IsInsideWarehouse)
+			if (Game.IsControlJustPressed(0, Control.Phone) && !PhoneState.IsShown && !PhoneState.Block)
 			{
 				phoneScaleform = new Scaleform("CELLPHONE_IFRUIT");
 				TriggerEvent("freemode:heyItsAPhoneScaleform!", phoneScaleform.Handle);
@@ -29,8 +29,12 @@ namespace Freeroam.Phone
 				API.SetMobilePhoneScale(285f);
 				API.CreateMobilePhone(0);
 			}
-			else if (WarehouseState.IsInsideWarehouse)
+			else if (PhoneState.Block && PhoneState.IsShown)
+			{
 				PhoneState.IsShown = false;
+				API.DestroyMobilePhone();
+				phoneScaleform.Dispose();
+			}
 
 			if (PhoneState.IsShown)
 			{
@@ -39,14 +43,11 @@ namespace Freeroam.Phone
 				phoneScaleform.CallFunction("SET_HEADER", "Freemode");
 				phoneScaleform.CallFunction("SET_TITLEBAR_TIME", h, m);
 				phoneScaleform.CallFunction("SET_SLEEP_MODE", false);
-				//phoneScaleform.CallFunction("SET_SOFT_KEYS", 1, true, 2);
-				//phoneScaleform.CallFunction("SET_SOFT_KEYS", 2, true, 3);
 				phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
 				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", 0);
+				phoneScaleform.CallFunction("SET_THEME", 5);
 				for (int i = 0; i < 9; i++)
-				{
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, 42);
-				}
 				phoneScaleform.CallFunction("DISPLAY_VIEW", 1);
 				int renderId = 0;
 				API.GetMobilePhoneRenderId(ref renderId);

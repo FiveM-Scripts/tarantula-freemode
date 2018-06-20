@@ -28,7 +28,6 @@ namespace Freeroam.Sync
 					transitioning = true;
 					API.SetWeatherTypeOverTime(weather, transitionTime);
 					await Delay(transitionTime);
-					API.SetWeatherTypeNowPersist(weather);
 					currentWeather = weather;
 					transitioning = false;
 				}
