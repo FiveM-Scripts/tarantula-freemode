@@ -56,6 +56,7 @@
     <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppPlayerlist.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMessages.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\Messages\AppMessagesHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
