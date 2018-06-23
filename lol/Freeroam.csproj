@@ -53,12 +53,15 @@
     <Compile Include="Freemode\Display\Money.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\FreemodeMenu.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\AppMessages.cs" />
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
+    <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
+    <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
-    <Compile Include="Freemode\Phone\PhoneInput.cs" />
     <Compile Include="Freemode\Phone\PhoneStarter.cs" />
     <Compile Include="Freemode\Phone\PhoneState.cs" />
     <Compile Include="RichPresenceHandler.cs" />

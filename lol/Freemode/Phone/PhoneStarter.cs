@@ -1,12 +1,13 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Freeroam.Freemode.Phone.AppCollection;
 using System.Threading.Tasks;
 
 namespace Freeroam.Freemode.Phone
 {
-	class PhoneStarter : BaseScript
+	public class PhoneStarter : BaseScript
 	{
-		private Scaleform phoneScaleform;
+		private static Scaleform phoneScaleform;
 
 		public PhoneStarter()
 		{
@@ -20,20 +21,18 @@ namespace Freeroam.Freemode.Phone
 			if (Game.IsControlJustPressed(0, Control.Phone) && !PhoneState.IsShown && !PhoneState.Block)
 			{
 				phoneScaleform = new Scaleform("CELLPHONE_IFRUIT");
-				TriggerEvent("freemode:heyItsAPhoneScaleform!", phoneScaleform.Handle);
+				PhoneState.PhoneScaleform = phoneScaleform;
 				PhoneState.IsShown = true;
 				Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default");
 				API.SetMobilePhonePosition(58f, -21f, -60f);
 				API.SetMobilePhoneRotation(-90f, 0f, 0f, 0);
 				API.SetMobilePhoneScale(285f);
 				API.CreateMobilePhone(0);
+
+				PhoneAppStarter.MainApp();
 			}
 			else if (PhoneState.Block && PhoneState.IsShown)
-			{
-				PhoneState.IsShown = false;
-				API.DestroyMobilePhone();
-				phoneScaleform.Dispose();
-			}
+				StopPhone();
 
 			if (PhoneState.IsShown)
 			{
@@ -41,22 +40,23 @@ namespace Freeroam.Freemode.Phone
 				API.NetworkGetServerTime(ref h, ref m, ref s);
 				phoneScaleform.CallFunction("SET_TITLEBAR_TIME", h, m);
 				phoneScaleform.CallFunction("SET_SLEEP_MODE", false);
-				phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
 				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", 0);
 				phoneScaleform.CallFunction("SET_THEME", 5);
-				for (int i = 0; i < 9; i++)
-				{
-					PhoneAppIcon appIcon = PhoneAppHolder.Apps[i].AppIcon;
-					if (PhoneAppHolder.Apps[i].Disabled)
-						appIcon = PhoneAppIcon.APP_EMPTY;
-					phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, (int) appIcon);
-				}
+				
 				int renderId = 0;
 				API.GetMobilePhoneRenderId(ref renderId);
 				API.SetTextRenderId(renderId);
 				API.DrawScaleformMovie(phoneScaleform.Handle, 0.0998f, 0.1775f, 0.1983f, 0.364f, 255, 255, 255, 255, 0);
 				API.SetTextRenderId(1);
 			}
+		}
+
+		public static void StopPhone()
+		{
+			PhoneAppStarter.Stop();
+			PhoneState.IsShown = false;
+			API.DestroyMobilePhone();
+			phoneScaleform.Dispose();
 		}
 	}
 }
