@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Freemode\Blips\SessionBlips.cs" />
+    <Compile Include="Freemode\Display\Info.cs" />
+    <Compile Include="Freemode\Display\Money.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\FreemodeMenu.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />

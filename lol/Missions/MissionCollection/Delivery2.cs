@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using Freeroam.Missions.MissionHelpers;
 using Freeroam.Util;
 using System.Collections.Generic;
@@ -16,7 +17,16 @@ namespace Freeroam.Missions.MissionCollection
 
 		public async Task Prepare()
 		{
-			deliveryCar = await MissionHelper.CreateRobustVehicle(VehicleHash.Voltic2, new Vector3(667.4f, -756f, 23.7f), 171.5f);
+			VehicleHash[] possibleVehicles =
+			{
+				VehicleHash.Voltic2,
+				VehicleHash.Voltic,
+				VehicleHash.Kuruma2,
+				VehicleHash.Oppressor,
+				VehicleHash.Lectro
+			};
+			deliveryCar = await MissionHelper.CreateRobustVehicle(possibleVehicles[API.GetRandomIntInRange(0, possibleVehicles.Length)],
+				new Vector3(667.4f, -756f, 23.7f), 171.5f);
 
 			missionMusic = new MissionMusic();
 			missionMusic.PlayStartMusic();

@@ -17,9 +17,11 @@ namespace Freeroam.Freemode
 		public FreemodeMenu()
 		{
 			menuPool = new MenuPool();
-			mainMenu = new UIMenu(Game.Player.Name, "Interaction");
-			mainMenu.MouseControlsEnabled = false;
-			mainMenu.ControlDisablingEnabled = false;
+			mainMenu = new UIMenu("Interaction", "Go get a Hobby")
+			{
+				MouseControlsEnabled = false,
+				ControlDisablingEnabled = false
+			};
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
 

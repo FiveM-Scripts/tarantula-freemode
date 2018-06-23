@@ -1,6 +1,5 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Freeroam.Warehouses;
 using System.Threading.Tasks;
 
 namespace Freeroam.Phone
@@ -48,7 +47,6 @@ namespace Freeroam.Phone
 				phoneScaleform.CallFunction("SET_THEME", 5);
 				for (int i = 0; i < 9; i++)
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, 42);
-				phoneScaleform.CallFunction("DISPLAY_VIEW", 1);
 				int renderId = 0;
 				API.GetMobilePhoneRenderId(ref renderId);
 				API.SetTextRenderId(renderId);

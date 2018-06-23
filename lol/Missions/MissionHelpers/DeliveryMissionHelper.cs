@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Freeroam.Freemode.Display;
 using Freeroam.Util;
 using Freeroam.Warehouses;
 using System.Collections.Generic;
@@ -55,31 +56,6 @@ namespace Freeroam.Missions.MissionHelpers
 
 		public async Task HandleDeliveryDropOff()
 		{
-			if (Game.PlayerPed.CurrentVehicle == deliveryCar)
-			{
-				if (!insideCar)
-				{
-					MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
-					deliveryCar.AttachedBlip.Alpha = 0;
-					deliveryCar.AttachedBlip.ShowRoute = false;
-					importBlip.Alpha = 255;
-					importBlip.ShowRoute = true;
-					insideCar = true;
-				}
-			}
-			else
-			{
-				if (insideCar)
-				{
-					MissionHelper.DrawTaskSubtitle($"Get back into the ~b~{vehicleLabel}~w~.");
-					deliveryCar.AttachedBlip.Alpha = 255;
-					deliveryCar.AttachedBlip.ShowRoute = true;
-					importBlip.Alpha = 0;
-					importBlip.ShowRoute = false;
-					insideCar = false;
-				}
-			}
-
 			if (Game.Player.WantedLevel > 0)
 			{
 				if (!wantedLevelWarned)
@@ -99,6 +75,30 @@ namespace Freeroam.Missions.MissionHelpers
 					importBlip.ShowRoute = true;
 					wantedLevelWarned = false;
 				}
+				else if (Game.PlayerPed.CurrentVehicle == deliveryCar)
+				{
+					if (!insideCar)
+					{
+						MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
+						deliveryCar.AttachedBlip.Alpha = 0;
+						deliveryCar.AttachedBlip.ShowRoute = false;
+						importBlip.Alpha = 255;
+						importBlip.ShowRoute = true;
+						insideCar = true;
+					}
+				}
+				else
+				{
+					if (insideCar)
+					{
+						MissionHelper.DrawTaskSubtitle($"Get back into the ~b~{vehicleLabel}~w~.");
+						deliveryCar.AttachedBlip.Alpha = 255;
+						deliveryCar.AttachedBlip.ShowRoute = true;
+						importBlip.Alpha = 0;
+						importBlip.ShowRoute = false;
+						insideCar = false;
+					}
+				}
 
 				World.DrawMarker(MarkerType.VerticalCylinder, importPoint, Vector3.Zero, Vector3.Zero, new Vector3(3f, 3f, 3f),
 						Color.FromArgb(127, 0, 0, 255));
@@ -109,6 +109,7 @@ namespace Freeroam.Missions.MissionHelpers
 					deliveryCar.Delete();
 					// TODO: Properly save
 					WarehouseState.VehicleAmount++;
+					Money.AddMoney(10000);
 					MissionStarter.RequestStopCurrentMission();
 				}
 			}

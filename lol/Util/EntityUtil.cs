@@ -47,9 +47,9 @@ namespace Freeroam.Util
 				model.Request();
 				while (!model.IsLoaded)
 					await BaseScript.Delay(1);
+				Ped ped = new Ped(API.CreatePed((int)pedType, (uint)model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
 				model.MarkAsNoLongerNeeded();
-
-				return new Ped(API.CreatePed((int) pedType, (uint) model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
+				return ped;
 			}
 			return null;
 		}
@@ -61,11 +61,26 @@ namespace Freeroam.Util
 				model.Request();
 				while (!model.IsLoaded)
 					await BaseScript.Delay(1);
-
-				return new Vehicle(API.CreateVehicle((uint) model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
+				Vehicle vehicle = new Vehicle(API.CreateVehicle((uint) model.Hash, pos.X, pos.Y, pos.Z, heading, networked, false));
+				model.MarkAsNoLongerNeeded();
+				return vehicle;
 			}
-			model.MarkAsNoLongerNeeded();
+			return null;
+		}
 
+		public static async Task<Prop> CreateProp(Model model, Vector3 pos, bool dynamic, bool placeOnGround = false, bool networked = true)
+		{
+			if (API.IsModelValid((uint) model.Hash))
+			{
+				model.Request();
+				while (!model.IsLoaded)
+					await BaseScript.Delay(1);
+				if (placeOnGround)
+					pos.Z = World.GetGroundHeight(pos);
+				Prop prop = new Prop(API.CreateObjectNoOffset((uint) model.Hash, pos.X, pos.Y, pos.Z, networked, false, dynamic));
+				model.MarkAsNoLongerNeeded();
+				return prop;
+			}
 			return null;
 		}
 

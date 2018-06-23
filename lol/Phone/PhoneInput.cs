@@ -7,7 +7,16 @@ namespace Freeroam.Phone
 {
 	class PhoneInput : BaseScript
 	{
+		private enum Direction
+		{
+			UP,
+			RIGHT,
+			DOWN,
+			LEFT
+		}
+
 		private Scaleform phoneScaleform;
+		private int selected;
 
 		public PhoneInput()
 		{
@@ -15,10 +24,9 @@ namespace Freeroam.Phone
 			{
 				phoneScaleform = new Scaleform("THIS IS NEVER GOING TO WORK!!!")
 				{
-					// Guess what... it did
-					NativeValue = (ulong) handle
-				};
-				// Mind = blown
+					NativeValue = (ulong)handle // Guess what... it did
+				}; // Mind = blown
+				selected = 4;
 			});
 
 			Tick += OnTick;
@@ -30,6 +38,8 @@ namespace Freeroam.Phone
 
 			if (PhoneState.IsShown)
 			{
+				phoneScaleform.CallFunction("DISPLAY_VIEW", 1, selected);
+
 				bool pressed = false;
 				if (Game.IsControlJustPressed(0, Control.PhoneCancel))
 				{
@@ -40,27 +50,54 @@ namespace Freeroam.Phone
 				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneUp))
 				{
-					phoneScaleform.CallFunction("SET_INPUT_EVENT", 1);
+					Navigate(Direction.UP);
 					pressed = true;
 				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneRight))
 				{
-					phoneScaleform.CallFunction("SET_INPUT_EVENT", 2);
+					Navigate(Direction.RIGHT);
 					pressed = true;
 				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneDown))
 				{
-					phoneScaleform.CallFunction("SET_INPUT_EVENT", 3);
+					Navigate(Direction.DOWN);
 					pressed = true;
 				}
 				else if (Game.IsControlJustPressed(0, Control.PhoneLeft))
 				{
-					phoneScaleform.CallFunction("SET_INPUT_EVENT", 4);
+					Navigate(Direction.LEFT);
 					pressed = true;
 				}
 
 				if (pressed)
 					Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default");
+			}
+		}
+
+		private void Navigate(Direction direction)
+		{
+			switch (direction)
+			{
+				case Direction.UP:
+					selected -= 3;
+					if (selected < 0)
+						selected = 9 - Math.Abs(selected);
+					break;
+				case Direction.RIGHT:
+					selected += 1;
+					if (selected > 8)
+						selected = 0;
+					break;
+				case Direction.DOWN:
+					selected += 3;
+					if (selected > 8)
+						selected = selected - 9;
+					break;
+				case Direction.LEFT:
+					selected -= 1;
+					if (selected < 0)
+						selected = 8;
+					break;
 			}
 		}
 	}
