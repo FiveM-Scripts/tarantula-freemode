@@ -2,7 +2,7 @@
 using CitizenFX.Core.Native;
 using System.Threading.Tasks;
 
-namespace Freeroam.Phone
+namespace Freeroam.Freemode.Phone
 {
 	class PhoneStarter : BaseScript
 	{
@@ -39,14 +39,18 @@ namespace Freeroam.Phone
 			{
 				int h = 0, m = 0, s = 0;
 				API.NetworkGetServerTime(ref h, ref m, ref s);
-				phoneScaleform.CallFunction("SET_HEADER", "Freemode");
 				phoneScaleform.CallFunction("SET_TITLEBAR_TIME", h, m);
 				phoneScaleform.CallFunction("SET_SLEEP_MODE", false);
 				phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
 				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", 0);
 				phoneScaleform.CallFunction("SET_THEME", 5);
 				for (int i = 0; i < 9; i++)
-					phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, 42);
+				{
+					PhoneAppIcon appIcon = PhoneAppHolder.Apps[i].AppIcon;
+					if (PhoneAppHolder.Apps[i].Disabled)
+						appIcon = PhoneAppIcon.APP_EMPTY;
+					phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, (int) appIcon);
+				}
 				int renderId = 0;
 				API.GetMobilePhoneRenderId(ref renderId);
 				API.SetTextRenderId(renderId);

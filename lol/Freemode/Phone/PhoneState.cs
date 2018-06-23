@@ -1,4 +1,4 @@
-﻿namespace Freeroam.Phone
+﻿namespace Freeroam.Freemode.Phone
 {
 	public static class PhoneState
 	{

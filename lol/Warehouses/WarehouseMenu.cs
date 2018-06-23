@@ -1,8 +1,8 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+using Freeroam.Freemode.Phone;
 using Freeroam.Missions;
-using Freeroam.Missions.MissionCollection;
 using Freeroam.Missions.MissionHolders;
 using NativeUI;
 using System;
@@ -51,7 +51,10 @@ namespace Freeroam.Warehouses
 			{
 				menuPool.ProcessMenus();
 				if (Game.IsControlJustPressed(0, Control.InteractionMenu) && !MissionState.MissionRunning)
+				{
 					actionMenu.Visible = !actionMenu.Visible;
+					PhoneState.Block = actionMenu.Visible;
+				}
 			}
 		}
 	}

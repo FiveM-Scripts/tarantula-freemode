@@ -3,7 +3,7 @@ using CitizenFX.Core.Native;
 using System;
 using System.Threading.Tasks;
 
-namespace Freeroam.Phone
+namespace Freeroam.Freemode.Phone
 {
 	class PhoneInput : BaseScript
 	{
@@ -39,6 +39,10 @@ namespace Freeroam.Phone
 			if (PhoneState.IsShown)
 			{
 				phoneScaleform.CallFunction("DISPLAY_VIEW", 1, selected);
+				string appName = PhoneAppHolder.Apps[selected].AppName;
+				if (PhoneAppHolder.Apps[selected].Disabled)
+					appName = "";
+				phoneScaleform.CallFunction("SET_HEADER", appName);
 
 				bool pressed = false;
 				if (Game.IsControlJustPressed(0, Control.PhoneCancel))
@@ -66,6 +70,10 @@ namespace Freeroam.Phone
 				else if (Game.IsControlJustPressed(0, Control.PhoneLeft))
 				{
 					Navigate(Direction.LEFT);
+					pressed = true;
+				}
+				else if (Game.IsControlJustPressed(0, Control.PhoneSelect))
+				{
 					pressed = true;
 				}
 
