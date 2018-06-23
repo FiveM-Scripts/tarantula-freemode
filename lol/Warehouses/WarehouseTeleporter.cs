@@ -34,7 +34,7 @@ namespace Freeroam.Warehouses
 				foreach (Warehouse warehouse in WarehouseHolder.Warehouses)
 				{
 					Vector3 entryPointPos = new Vector3(warehouse.EntryPoint.X, warehouse.EntryPoint.Y, warehouse.EntryPoint.Z);
-					Vector3 exitPointPos = warehouse.ExitPoint;
+					Vector3 exitPointPos = warehouse.WarehouseInterior.ExitPoint;
 
 					World.DrawMarker(MarkerType.VerticalCylinder, entryPointPos - new Vector3(0f, 0f, 1f), Vector3.Zero, Vector3.Zero,
 						new Vector3(1f, 1f, 1f), Color.FromArgb(127, 0, 0, 255));
@@ -49,7 +49,7 @@ namespace Freeroam.Warehouses
 						{
 							enterKeyText = "Press ~INPUT_PICKUP~ to enter your warehouse.";
 							closestWarehouse = warehouse;
-							tpPos = closestWarehouse.TeleportPoint;
+							tpPos = closestWarehouse.WarehouseInterior.TeleportPoint;
 						}
 					}
 					else if (World.GetDistance(Game.PlayerPed.Position, exitPointPos) < 1f)
@@ -73,7 +73,7 @@ namespace Freeroam.Warehouses
 
 		private async Task OnWarehouseTeleport(Warehouse warehouse, Vector4 tp)
 		{
-			if (tp == warehouse.TeleportPoint)
+			if (tp == warehouse.WarehouseInterior.TeleportPoint)
 			{
 				API.RequestIpl("ex_exec_warehouse_placement");
 				API.EnableInteriorProp(API.GetInteriorAtCoords(tp.X, tp.Y, tp.Z), "Basic_style_set");
@@ -104,13 +104,13 @@ namespace Freeroam.Warehouses
 
 				Vector4 tp;
 				if (teleport == WarehouseTeleport.Inside)
-					tp = insideWarehouse.TeleportPoint;
+					tp = insideWarehouse.WarehouseInterior.TeleportPoint;
 				else
 					tp = insideWarehouse.EntryPoint;
 				Game.PlayerPed.Position = new Vector3(tp.X, tp.Y, tp.Z);
 				Game.PlayerPed.Heading = tp.W;
 
-				WarehouseState.IsInsideWarehouse = tp == insideWarehouse.TeleportPoint;
+				WarehouseState.IsInsideWarehouse = tp == insideWarehouse.WarehouseInterior.TeleportPoint;
 				Screen.Fading.FadeIn(1000);
 				Game.PlayerPed.IsInvincible = false;
 

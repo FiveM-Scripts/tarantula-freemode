@@ -7,7 +7,7 @@ namespace Freeroam.Freemode.Display
 {
 	public class Money : BaseScript
 	{
-		public static int money { get; private set; }
+		public static int Amount { get; private set; }
 
 		public Money()
 		{
@@ -18,17 +18,17 @@ namespace Freeroam.Freemode.Display
 		{
 			await Delay(100);
 
-			API.StatSetInt((uint) Game.GenerateHash("MP0_WALLET_BALANCE"), money, true);
+			API.StatSetInt((uint) Game.GenerateHash("MP0_WALLET_BALANCE"), Amount, true);
 		}
 
 		public static void AddMoney(int amount)
 		{
-			money += amount;
+			Amount += amount;
 		}
 
 		public static void RemoveMoney(int amount)
 		{
-			money -= amount;
+			Amount -= amount;
 		}
 	}
 }
