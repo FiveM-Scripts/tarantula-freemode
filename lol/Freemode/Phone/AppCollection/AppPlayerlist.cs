@@ -26,17 +26,16 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			int slot = 0;
 			if (!inSubMenu)
+			{
 				foreach (Player player in new PlayerList().Where(player => player != Game.Player))
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, player.Name);
+				phoneScaleform.CallFunction("SET_HEADER", "Playerlist");
+			}
 			else
 			{
 				phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, "Send Message");
-			}
-
-			if (!inSubMenu)
-				phoneScaleform.CallFunction("SET_HEADER", "Playerlist");
-			else
 				phoneScaleform.CallFunction("SET_HEADER", selectedPlayer.Name);
+			}
 
 			bool pressed = false;
 			if (Game.IsControlJustPressed(0, Control.PhoneUp) && slot > 0)
@@ -65,12 +64,16 @@ namespace Freeroam.Freemode.Phone.AppCollection
 				else
 				{
 					string message = await Game.GetUserInput(60);
-					if (message.Length == 0)
-						Screen.ShowNotification("~r~Please enter a message.");
-					else
+					if (message != null)
 					{
-						BaseScript.TriggerServerEvent("freeroam:sendMessage", selectedPlayer.ServerId, message);
-						Screen.ShowNotification("~g~Message sent.");
+						message = message.Trim();
+						if (message.Length == 0)
+							Screen.ShowNotification("~r~Please enter a message.");
+						else
+						{
+							BaseScript.TriggerServerEvent("freeroam:sendMessage", selectedPlayer.ServerId, message);
+							Screen.ShowNotification("~g~Message sent.");
+						}
 					}
 				}
 				selected = 0;
