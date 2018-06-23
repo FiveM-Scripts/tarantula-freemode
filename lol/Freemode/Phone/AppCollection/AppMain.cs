@@ -92,8 +92,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 						selected = 9 - Math.Abs(selected);
 					break;
 				case PhoneInputDirection.RIGHT:
-					selected += 1;
-					if (selected > 8)
+					if (++selected > 8)
 						selected = 0;
 					break;
 				case PhoneInputDirection.DOWN:
@@ -102,8 +101,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 						selected = selected - 9;
 					break;
 				case PhoneInputDirection.LEFT:
-					selected -= 1;
-					if (selected < 0)
+					if (--selected < 0)
 						selected = 8;
 					break;
 			}

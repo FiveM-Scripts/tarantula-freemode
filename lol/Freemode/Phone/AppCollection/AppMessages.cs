@@ -18,10 +18,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
 			for (int i = 0; i < 9; i++)
-			{
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, 1, 1, 1);
-			}
-
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 6, i, "Hi", "Hi");
 			phoneScaleform.CallFunction("DISPLAY_VIEW", 6, 0);
 
 			if (Game.IsControlJustPressed(0, Control.PhoneCancel))
