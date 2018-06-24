@@ -22,8 +22,11 @@ namespace Freeroam.Freemode.Blips
 				Blip playerBlip = playerPed.AttachedBlip;
 				if (playerBlip == null)
 					playerBlip = playerPed.AttachBlip();
-				playerBlip.Color = BlipColor.White;
-				FadeBlipByDistance(playerBlip);
+				playerBlip.Name = player.Name;
+				if (API.IsPauseMenuActive())
+					playerBlip.Alpha = 255;
+				else
+					FadeBlipByDistance(playerBlip);
 				API.ShowHeadingIndicatorOnBlip(playerBlip.Handle, true);
 			}
 		}
@@ -31,7 +34,7 @@ namespace Freeroam.Freemode.Blips
 		private void FadeBlipByDistance(Blip blip)
 		{
 			int distance = (int) World.GetDistance(Game.PlayerPed.Position, blip.Position);
-			blip.Alpha = 255 - distance;
+			blip.Alpha = 255 - distance > 255 ? 0 : 255;
 		}
 	}
 }

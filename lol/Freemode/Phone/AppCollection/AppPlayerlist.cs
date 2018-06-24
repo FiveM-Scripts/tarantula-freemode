@@ -21,21 +21,18 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			await Task.FromResult(0);
 
-			phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
-			phoneScaleform.CallFunction("DISPLAY_VIEW", 2, selected);
-
 			int slot = 0;
-			if (!inSubMenu)
-			{
+			if (inSubMenu)
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, "Send Message");
+			else
 				foreach (Player player in new PlayerList().Where(player => player != Game.Player))
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, player.Name);
-				phoneScaleform.CallFunction("SET_HEADER", "Playerlist");
-			}
-			else
-			{
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, "Send Message");
-				phoneScaleform.CallFunction("SET_HEADER", selectedPlayer.Name);
-			}
+			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedPlayer.Name : "Playerlist");
+			phoneScaleform.CallFunction("DISPLAY_VIEW", 2, selected);
+
+			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int) PhoneSelectSlot.SLOT_RIGHT, true, (int) PhoneSelectIcon.ICON_BACK);
+			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int)PhoneSelectSlot.SLOT_LEFT, true,
+				slot > 0 ? (int) PhoneSelectIcon.ICON_SELECT : (int) PhoneSelectIcon.ICON_BLANK);
 
 			bool pressed = false;
 			if (Game.IsControlJustPressed(0, Control.PhoneUp) && slot > 0)

@@ -27,20 +27,20 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			await Task.FromResult(0);
 
-			phoneScaleform.CallFunction("SET_SOFT_KEYS", 3, true, 4);
 			for (int i = 0; i < 9; i++)
 			{
 				PhoneAppIcon appIcon = PhoneAppHolder.Apps[i].AppIcon;
 				if (PhoneAppHolder.Apps[i].Disabled)
 					appIcon = PhoneAppIcon.APP_EMPTY;
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, (int)appIcon);
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 1, i, (int) appIcon);
 			}
 
 			phoneScaleform.CallFunction("DISPLAY_VIEW", 1, selected);
-			string appName = PhoneAppHolder.Apps[selected].AppName;
-			if (PhoneAppHolder.Apps[selected].Disabled)
-				appName = "";
-			phoneScaleform.CallFunction("SET_HEADER", appName);
+			phoneScaleform.CallFunction("SET_HEADER", PhoneAppHolder.Apps[selected].Disabled ? "" : PhoneAppHolder.Apps[selected].AppName);
+
+			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int) PhoneSelectSlot.SLOT_RIGHT, true, (int) PhoneSelectIcon.ICON_BACK);
+			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int) PhoneSelectSlot.SLOT_LEFT, true,
+				PhoneAppHolder.Apps[selected].Disabled ? (int) PhoneSelectIcon.ICON_BLANK : (int) PhoneSelectIcon.ICON_SELECT);
 
 			bool pressed = false;
 			if (Game.IsControlJustPressed(0, Control.PhoneUp))

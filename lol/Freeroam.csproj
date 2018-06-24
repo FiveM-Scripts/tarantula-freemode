@@ -60,6 +60,7 @@
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
+    <Compile Include="Freemode\Phone\PhoneEnums.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
     <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />

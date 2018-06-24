@@ -37,7 +37,7 @@ namespace FreeroamServer.Sync
 			{
 				Random random = new Random();
 				currentWeather = weatherTypes[random.Next(0, weatherTypes.Length - 1)];
-				weatherSwitchTime = random.Next(120, 600);
+				weatherSwitchTime = random.Next(120, 1200);
 				transitionTime = 60;
 			}
 			TriggerClientEvent("freeroam:weatherUpdate", currentWeather, transitionTime);

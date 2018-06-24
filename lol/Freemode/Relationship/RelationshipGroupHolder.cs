@@ -10,7 +10,7 @@ namespace Freeroam.Freemode.Relationship
 
 		public RelationshipGroupHolder()
 		{
-			Player.SetRelationshipBetweenGroups(Player, CitizenFX.Core.Relationship.Hate, true);
+			Player.SetRelationshipBetweenGroups(Player, CitizenFX.Core.Relationship.Neutral, true);
 			NeutralEnemyPeds.SetRelationshipBetweenGroups(Player, CitizenFX.Core.Relationship.Dislike, true);
 			WarehousePeds.SetRelationshipBetweenGroups(Player, CitizenFX.Core.Relationship.Respect, true);
 		}
