@@ -18,20 +18,24 @@ namespace Freeroam.Freemode.Phone
 		{
 			await Task.FromResult(0);
 
-			if (Game.IsControlJustPressed(0, Control.Phone) && !PhoneState.IsShown && !PhoneState.Block)
+			if (!PhoneState.IsShown)
 			{
-				phoneScaleform = new Scaleform("CELLPHONE_IFRUIT");
-				PhoneState.PhoneScaleform = phoneScaleform;
-				PhoneState.IsShown = true;
-				Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default");
-				API.SetMobilePhonePosition(58f, -21f, -60f);
-				API.SetMobilePhoneRotation(-90f, 0f, 0f, 0);
-				API.SetMobilePhoneScale(285f);
-				API.CreateMobilePhone(0);
+				if (Game.IsControlJustPressed(0, Control.Phone) && !PhoneState.IsShown && !PhoneState.Block
+					&& !API.IsPauseMenuActive() && !Game.PlayerPed.IsDead)
+				{
+					phoneScaleform = new Scaleform("CELLPHONE_IFRUIT");
+					PhoneState.PhoneScaleform = phoneScaleform;
+					PhoneState.IsShown = true;
+					Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default");
+					API.SetMobilePhonePosition(58f, -21f, -60f);
+					API.SetMobilePhoneRotation(-90f, 0f, 0f, 0);
+					API.SetMobilePhoneScale(285f);
+					API.CreateMobilePhone(0);
 
-				PhoneAppStarter.MainApp();
+					PhoneAppStarter.MainApp();
+				}
 			}
-			else if (PhoneState.Block && PhoneState.IsShown)
+			else if (PhoneState.Block || API.IsPauseMenuActive() || Game.PlayerPed.IsDead)
 				StopPhone();
 
 			if (PhoneState.IsShown)

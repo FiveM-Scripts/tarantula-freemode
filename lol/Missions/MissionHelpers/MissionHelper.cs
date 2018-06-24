@@ -1,7 +1,7 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
-using Freeroam.Freemode.Relationship;
+using Freeroam.Freemode.FreemodePlayer.Relationship;
 using Freeroam.Util;
 using System.Threading.Tasks;
 

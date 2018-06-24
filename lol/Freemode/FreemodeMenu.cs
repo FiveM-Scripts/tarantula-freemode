@@ -45,20 +45,25 @@ namespace Freeroam.Freemode
 				}
 			}
 
-			menuPool.ProcessMenus();
-			if (Game.IsControlJustPressed(0, Control.InteractionMenu) && !PhoneState.IsShown && !WarehouseState.IsInsideWarehouse)
+			if (Game.PlayerPed.IsDead)
+				mainMenu.Visible = false;
+			else
 			{
-				mainMenu.Visible = !mainMenu.Visible;
-				if (mainMenu.Visible)
+				menuPool.ProcessMenus();
+				if (Game.IsControlJustPressed(0, Control.InteractionMenu) && !PhoneState.IsShown && !WarehouseState.IsInsideWarehouse)
 				{
-					menuVisible = true;
-					mainMenu.Clear();
-					quickBlipItem = new UIMenuListItem("Quick Waypoint", World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
-					quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
+					mainMenu.Visible = !mainMenu.Visible;
+					if (mainMenu.Visible)
 					{
-						World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
-					});
-					mainMenu.AddItem(quickBlipItem);
+						menuVisible = true;
+						mainMenu.Clear();
+						quickBlipItem = new UIMenuListItem("Quick Waypoint", World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
+						quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
+						{
+							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
+						});
+						mainMenu.AddItem(quickBlipItem);
+					}
 				}
 			}
 		}

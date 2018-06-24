@@ -1,6 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Freeroam.Freemode.Relationship;
+using Freeroam.Freemode.FreemodePlayer.Relationship;
 using Freeroam.Util;
 using System;
 using System.Collections.Generic;

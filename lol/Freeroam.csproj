@@ -56,13 +56,15 @@
     <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppPlayerlist.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMessages.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\AppTrackify.cs" />
     <Compile Include="Freemode\Phone\AppCollection\Messages\AppMessagesHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
     <Compile Include="Freemode\Phone\PhoneEnums.cs" />
-    <Compile Include="Freemode\Relationship\RelationshipGroupForcer.cs" />
-    <Compile Include="Freemode\Relationship\RelationshipGroupHolder.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Relationship\RelationshipGroupForcer.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Relationship\RelationshipGroupHolder.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Spawner.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
     <Compile Include="Freemode\Phone\PhoneStarter.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Sync\WeatherSync.cs" />
     <Compile Include="Util\EntityDecoration.cs" />
     <Compile Include="Util\EntityUtil.cs" />
+    <Compile Include="Util\WorldUtil.cs" />
     <Compile Include="Warehouses\WarehouseBehaviour.cs" />
     <Compile Include="Warehouses\WarehouseBlipPlacer.cs" />
     <Compile Include="Warehouses\WarehouseHolder.cs" />

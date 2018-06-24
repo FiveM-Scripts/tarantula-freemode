@@ -36,6 +36,7 @@ namespace Freeroam.Warehouses
 						await WarehouseTeleporter.RequestTeleport(WarehouseTeleport.Outside);
 						await Delay(1000);
 						MissionStarter.RequestStartMission();
+						PhoneState.Block = false;
 						break;
 				}
 			});
