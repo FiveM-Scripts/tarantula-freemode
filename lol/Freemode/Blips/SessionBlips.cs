@@ -23,6 +23,7 @@ namespace Freeroam.Freemode.Blips
 				if (playerBlip == null)
 					playerBlip = playerPed.AttachBlip();
 				playerBlip.Name = player.Name;
+				playerBlip.Color = BlipColor.White;
 				if (API.IsPauseMenuActive())
 					playerBlip.Alpha = 255;
 				else

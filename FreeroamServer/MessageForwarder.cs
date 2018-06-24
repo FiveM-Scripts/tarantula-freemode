@@ -7,12 +7,12 @@ namespace FreeroamServer
 	{
 		public MessageForwarder()
 		{
-			EventHandlers["freeroam:sendMessage"] += new Action<Player, int, string>(SendMessage);
+			EventHandlers["freeroam:sendPlayerMessage"] += new Action<Player, int, string>(SendMessage);
 		}
 
 		private void SendMessage([FromSource] Player player, int targetServerId, string message)
 		{
-			TriggerClientEvent(Players[targetServerId], "freeroam:sendMessage", player.Handle, message);
+			TriggerClientEvent(Players[targetServerId], "freeroam:forwardPlayerMessage", player.Handle, message);
 		}
 	}
 }

@@ -42,6 +42,8 @@ namespace Freeroam.Freemode.Phone
 				phoneScaleform.CallFunction("SET_SLEEP_MODE", false);
 				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", 0);
 				phoneScaleform.CallFunction("SET_THEME", 5);
+				Vector3 playerPos = Game.PlayerPed.Position;
+				phoneScaleform.CallFunction("SET_SIGNAL_STRENGTH", API.GetZoneScumminess(API.GetZoneAtCoords(playerPos.X, playerPos.Y, playerPos.Z)));
 				
 				int renderId = 0;
 				API.GetMobilePhoneRenderId(ref renderId);

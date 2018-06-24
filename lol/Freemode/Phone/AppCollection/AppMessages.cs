@@ -10,7 +10,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		private Scaleform phoneScaleform;
 		private int selected;
 		private bool inSubMenu;
-		private Message selectedMessage;
+		private PlayerMessage selectedMessage;
 
 		public void Init(Scaleform phoneScaleform)
 		{
@@ -23,11 +23,11 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			int slot = 0;
 			if (inSubMenu)
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 7, 0, selectedMessage.Sender.Name, selectedMessage.SenderMessage, "CHAR_MULTIPLAYER");
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 7, 0, selectedMessage.SenderName, selectedMessage.SenderMessage, selectedMessage.SenderMugshotTxd);
 			else
-				foreach (Message message in Enumerable.Reverse(MessagesHolder.Messages))
+				foreach (PlayerMessage message in Enumerable.Reverse(MessagesHolder.Messages))
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 6, slot++, message.Timestamp.Hours, message.Timestamp.Minutes, -1,
-						message.Sender.Name, message.SenderMessage);
+						message.SenderName, message.SenderMessage);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", inSubMenu ? 7 : 6, inSubMenu ? 0 : selected);
 
 			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int) PhoneSelectSlot.SLOT_RIGHT, true, (int) PhoneSelectIcon.ICON_BACK);

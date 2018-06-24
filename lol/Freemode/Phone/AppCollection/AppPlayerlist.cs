@@ -68,7 +68,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 							Screen.ShowNotification("~r~Please enter a message.");
 						else
 						{
-							BaseScript.TriggerServerEvent("freeroam:sendMessage", selectedPlayer.ServerId, message);
+							BaseScript.TriggerServerEvent("freeroam:sendPlayerMessage", selectedPlayer.ServerId, message);
 							Screen.ShowNotification("~g~Message sent.");
 						}
 					}

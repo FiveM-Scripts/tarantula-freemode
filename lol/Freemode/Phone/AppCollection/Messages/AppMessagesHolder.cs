@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 namespace Freeroam.Freemode.Phone.AppCollection.Messages
 {
-	public struct Message
+	public struct PlayerMessage
 	{
-		public Player Sender { get; private set; }
+		public string SenderName { get; private set; }
+		public string SenderMugshotTxd { get; private set; }
 		public string SenderMessage { get; private set; }
 		public TimeSpan Timestamp { get; private set; }
 
-		public Message(Player sender, string message)
+		public PlayerMessage(string senderName, string senderMugshotTxd, string message)
 		{
-			Sender = sender;
+			SenderName = senderName;
+			SenderMugshotTxd = senderMugshotTxd;
 			SenderMessage = message;
 			int h = 0, m = 0, s = 0;
 			API.NetworkGetServerTime(ref h, ref m, ref s);
@@ -23,27 +25,27 @@ namespace Freeroam.Freemode.Phone.AppCollection.Messages
 
 	public class MessagesHolder : BaseScript
 	{
-		public static List<Message> Messages { get; } = new List<Message>();
+		public static List<PlayerMessage> Messages { get; } = new List<PlayerMessage>();
 
 		public MessagesHolder()
 		{
-			EventHandlers["freeroam:sendMessage"] += new Action<int, string>(AddMessage);
+			EventHandlers["freeroam:forwardPlayerMessage"] += new Action<int, string>(AddMessage);
 		}
 
 		public static async void AddMessage(int senderServerId, string msg)
 		{
 			Player sender = new Player(API.GetPlayerFromServerId(senderServerId));
-			Messages.Add(new Message(sender, msg));
-
-			Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default");
-			int headshotHandle = API.RegisterPedheadshot(sender.Character.Handle);
-			while (!API.IsPedheadshotReady(headshotHandle))
+			int senderHeadshotHandle = API.RegisterPedheadshot(sender.Character.Handle);
+			while (!API.IsPedheadshotReady(senderHeadshotHandle))
 				await Delay(1);
-			string headshotTxdString = API.GetPedheadshotTxdString(headshotHandle);
+			string senderHeadshotTxd = API.GetPedheadshotTxdString(senderHeadshotHandle);
 			API.SetNotificationTextEntry("STRING");
 			API.AddTextComponentString(msg);
-			API.SetNotificationMessage(headshotTxdString, headshotTxdString, true, 1, "New Message", sender.Name);
+			API.SetNotificationMessage(senderHeadshotTxd, senderHeadshotTxd, true, 1, "New Message", sender.Name);
 			API.DrawNotification(true, true);
+			Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default");
+
+			Messages.Add(new PlayerMessage(sender.Name, senderHeadshotTxd, msg));
 		}
 	}
 }
