@@ -4,7 +4,7 @@ using CitizenFX.Core;
 
 namespace Freeroam.Freemode.Phone.AppCollection
 {
-	class AppMain : IPhoneApp
+	public class AppMain : IPhoneApp
 	{
 		private enum PhoneInputDirection
 		{
@@ -66,7 +66,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 			else if (Game.IsControlJustPressed(0, Control.PhoneSelect))
 			{
 				if (!PhoneAppHolder.Apps[selected].Disabled)
-					PhoneAppStarter.InitApp((IPhoneApp)Activator.CreateInstance(PhoneAppHolder.Apps[selected].AppHandler));
+					PhoneAppStarter.InitApp((IPhoneApp) Activator.CreateInstance(PhoneAppHolder.Apps[selected].AppHandler));
 				pressed = true;
 			}
 			else if (Game.IsControlJustPressed(0, Control.PhoneCancel))

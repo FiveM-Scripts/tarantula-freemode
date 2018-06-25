@@ -51,13 +51,14 @@
     <Compile Include="Freemode\Blips\SessionBlips.cs" />
     <Compile Include="Freemode\Display\Info.cs" />
     <Compile Include="Freemode\Display\Money.cs" />
+    <Compile Include="Freemode\Egg\FastAndFurious.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\FreemodeMenu.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppPlayerlist.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMessages.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\AppRadio.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppTrackify.cs" />
-    <Compile Include="Freemode\Phone\AppCollection\Messages\AppMessagesHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />

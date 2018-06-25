@@ -10,7 +10,6 @@ namespace Freeroam.Freemode.FreemodePlayer
 	{
 		private Scaleform wastedScaleform;
 		private bool died;
-		private int progressBarProgress;
 
 		public Spawner()
 		{
@@ -33,7 +32,6 @@ namespace Freeroam.Freemode.FreemodePlayer
 			if (Game.PlayerPed.IsDead)
 			{
 				died = true;
-				progressBarProgress = 0;
 				Screen.Hud.IsRadarVisible = false;
 				Screen.Effects.Start(ScreenEffect.DeathFailMpIn);
 				Audio.PlaySoundFrontend("Bed", "WastedSounds");
