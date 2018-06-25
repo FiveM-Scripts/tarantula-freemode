@@ -18,7 +18,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			for (int i = 0; i < PhoneAppHolder.Apps.Length; i++)
 				if (PhoneAppHolder.Apps[i].AppHandler == typeof(AppRadio))
-					PhoneAppHolder.Apps[i].Disabled = Game.PlayerPed.IsInVehicle();
+					PhoneAppHolder.Apps[i].Disabled = Game.PlayerPed.IsInVehicle() && Game.PlayerPed.CurrentVehicle.ClassType != VehicleClass.Cycles;
 		}
 	}
 
@@ -70,7 +70,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			await Task.FromResult(0);
 
-			if (Game.PlayerPed.IsInVehicle())
+			if (Game.PlayerPed.IsInVehicle() && Game.PlayerPed.CurrentVehicle.ClassType != VehicleClass.Cycles)
 			{
 				PhoneAppStarter.MainApp();
 				return;
