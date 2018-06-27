@@ -25,7 +25,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			public static Contact[] Contacts { get; } =
 			{
-				new Contact("Idiot", new Dictionary<string, Action>
+				new Contact("Assistant", new Dictionary<string, Action>
 				{
 					{ "Send Message", new Action(async () =>
 						{

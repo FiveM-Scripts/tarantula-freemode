@@ -22,10 +22,9 @@ namespace FreeroamServer
 			HttpClient httpClient = new HttpClient();
 			HttpResponseMessage response = await httpClient.PostAsync("http://94.130.180.216:8081/idiot",
 				new StringContent(JsonConvert.SerializeObject(new Dictionary<string, string> { ["message"] = message }), Encoding.UTF8, "application/json"));
-			string responseText = "Error";
 			if (response.StatusCode == HttpStatusCode.OK)
-				responseText = (string) JObject.Parse(await response.Content.ReadAsStringAsync())["response"];
-			TriggerClientEvent(player, "freeroam:forwardMessage", "Idiot", responseText, "CHAR_MULTIPLAYER");
+				TriggerClientEvent(player, "freeroam:forwardMessage", "Assistant", (string) JObject.Parse(await response.Content.ReadAsStringAsync())["response"],
+					"CHAR_MP_BIKER_BOSS");
 		}
 
 		private void SendPlayerMessage([FromSource] Player player, int targetServerId, string message)
