@@ -27,7 +27,7 @@ namespace Freeroam.Freemode.Phone
 			new PhoneApp(PhoneAppIcon.APP_GROUP, "Playerlist", typeof(AppPlayerlist)),
             new PhoneApp(PhoneAppIcon.APP_CONTACTS, "Contacts", typeof(AppContacts)),
             new PhoneApp(PhoneAppIcon.APP_RSS, "Radio", typeof(AppRadio)),
-			new PhoneApp(PhoneAppIcon.APP_TRACKIFY, "Trackify", typeof(AppTrackify), true),
+			new PhoneApp(PhoneAppIcon.APP_TRACKIFY, "Trackify", typeof(AppTrackify)),
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, "", null, true),
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, "", null, true),
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, "", null, true),

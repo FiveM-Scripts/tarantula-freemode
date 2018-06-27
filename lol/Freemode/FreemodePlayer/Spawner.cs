@@ -13,11 +13,12 @@ namespace Freeroam.Freemode.FreemodePlayer
 
 		public Spawner()
 		{
-			EventHandlers["onClientMapStart"] += new Action(() =>
+			EventHandlers["onClientMapStart"] += new Action(async () =>
 			{
+				await Delay(100);
+				Exports["spawnmanager"].setAutoSpawn(false);
 				Exports["spawnmanager"].spawnPlayer();
 			});
-			Exports["spawnmanager"].setAutoSpawn(false);
 
 			wastedScaleform = new Scaleform("MP_BIG_MESSAGE_FREEMODE");
 
