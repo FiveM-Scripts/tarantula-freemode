@@ -109,7 +109,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 				if (!inSubMenu)
 				{
 					inSubMenu = true;
-					selectedMessage = MessagesHolder.Messages[selected];
+					selectedMessage = MessagesHolder.Messages[MessagesHolder.Messages.Count - 1 - selected];
 				}
 				selected = 0;
 				pressed = true;
