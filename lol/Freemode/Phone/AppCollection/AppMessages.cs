@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Freeroam.Freemode.Phone.AppCollection
 {
-	public struct PlayerMessage
+	public struct Message
 	{
 		public string SenderName { get; private set; }
-		public string SenderMugshotTxd { get; private set; }
 		public string SenderMessage { get; private set; }
+		public string SenderCharImg { get; private set; }
 		public TimeSpan Timestamp { get; private set; }
 
-		public PlayerMessage(string senderName, string senderMugshotTxd, string message)
+		public Message(string senderName, string message, string senderCharImg)
 		{
 			SenderName = senderName;
-			SenderMugshotTxd = senderMugshotTxd;
 			SenderMessage = message;
+			SenderCharImg = senderCharImg;
 			int h = 0, m = 0, s = 0;
 			API.NetworkGetServerTime(ref h, ref m, ref s);
 			Timestamp = new TimeSpan(h, m, s);
@@ -27,27 +27,38 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 	public class MessagesHolder : BaseScript
 	{
-		public static List<PlayerMessage> Messages { get; } = new List<PlayerMessage>();
+		public static List<Message> Messages { get; } = new List<Message>();
 
 		public MessagesHolder()
 		{
-			EventHandlers["freeroam:forwardPlayerMessage"] += new Action<int, string>(AddMessage);
+			EventHandlers["freeroam:forwardMessage"] += new Action<string, string, string>(AddMessage);
+			EventHandlers["freeroam:forwardPlayerMessage"] += new Action<int, string>(AddPlayerMessage);
 		}
 
-		public static async void AddMessage(int senderServerId, string msg)
+		public static void AddMessage(string sender, string message, string charImg)
+		{
+			NotifyNewMessage(sender, message, charImg);
+			Messages.Add(new Message(sender, message, charImg));
+		}
+
+		public static async void AddPlayerMessage(int senderServerId, string message)
 		{
 			Player sender = new Player(API.GetPlayerFromServerId(senderServerId));
 			int senderHeadshotHandle = API.RegisterPedheadshot(sender.Character.Handle);
 			while (!API.IsPedheadshotReady(senderHeadshotHandle))
 				await Delay(1);
 			string senderHeadshotTxd = API.GetPedheadshotTxdString(senderHeadshotHandle);
+			NotifyNewMessage(sender.Name, message, senderHeadshotTxd);
+			Messages.Add(new Message(sender.Name, message, senderHeadshotTxd));
+		}
+
+		private static void NotifyNewMessage(string sender, string message, string charImg)
+		{
 			API.SetNotificationTextEntry("STRING");
-			API.AddTextComponentString(msg);
-			API.SetNotificationMessage(senderHeadshotTxd, senderHeadshotTxd, true, 1, "New Message", sender.Name);
+			API.AddTextComponentString(message);
+			API.SetNotificationMessage(charImg, charImg, true, 1, "New Message", sender);
 			API.DrawNotification(true, true);
 			Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default");
-
-			Messages.Add(new PlayerMessage(sender.Name, senderHeadshotTxd, msg));
 		}
 	}
 
@@ -56,7 +67,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		private Scaleform phoneScaleform;
 		private int selected;
 		private bool inSubMenu;
-		private PlayerMessage selectedMessage;
+		private Message selectedMessage;
 
 		public void Init(Scaleform phoneScaleform)
 		{
@@ -69,9 +80,9 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			int slot = 0;
 			if (inSubMenu)
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 7, 0, selectedMessage.SenderName, selectedMessage.SenderMessage, selectedMessage.SenderMugshotTxd);
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 7, 0, selectedMessage.SenderName, selectedMessage.SenderMessage, selectedMessage.SenderCharImg);
 			else
-				foreach (PlayerMessage message in Enumerable.Reverse(MessagesHolder.Messages))
+				foreach (Message message in Enumerable.Reverse(MessagesHolder.Messages))
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 6, slot++, message.Timestamp.Hours, message.Timestamp.Minutes, -1,
 						message.SenderName, message.SenderMessage);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", inSubMenu ? 7 : 6, inSubMenu ? 0 : selected);
