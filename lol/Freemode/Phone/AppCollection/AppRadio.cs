@@ -82,10 +82,6 @@ namespace Freeroam.Freemode.Phone.AppCollection
 				phoneScaleform.CallFunction("SET_DATA_SLOT", 13, slot++, -1, radioStationEntry.RadioName);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", 13, selected);
 
-			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int)PhoneSelectSlot.SLOT_RIGHT, true, (int)PhoneSelectIcon.ICON_BACK);
-			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int)PhoneSelectSlot.SLOT_LEFT, true,
-				slot > 0 ? (int)PhoneSelectIcon.ICON_SELECT : (int)PhoneSelectIcon.ICON_BLANK);
-
 			bool pressed = false;
 			if (Game.IsControlJustPressed(0, Control.PhoneUp))
 			{
