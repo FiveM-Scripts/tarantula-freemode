@@ -9,7 +9,7 @@ namespace Freeroam.Missions.MissionHolders
 		{
 			typeof(Delivery1),
 			typeof(Delivery2),
-			typeof(Delivery3)
+			//typeof(Delivery3)
 		};
 	}
 }

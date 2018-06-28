@@ -20,8 +20,6 @@ namespace Freeroam.Freemode.FreemodePlayer
 				Exports["spawnmanager"].spawnPlayer();
 			});
 
-			wastedScaleform = new Scaleform("MP_BIG_MESSAGE_FREEMODE");
-
 			Tick += OnTick;
 			Tick += OnScaleformMessageDrawTick;
 		}
@@ -32,8 +30,9 @@ namespace Freeroam.Freemode.FreemodePlayer
 
 			if (Game.PlayerPed.IsDead)
 			{
+				wastedScaleform = new Scaleform("MP_BIG_MESSAGE_FREEMODE");
 				died = true;
-				Screen.Hud.IsRadarVisible = false;
+				Screen.Hud.IsVisible = false;
 				Screen.Effects.Start(ScreenEffect.DeathFailMpIn);
 				Audio.PlaySoundFrontend("Bed", "WastedSounds");
 				await Delay(10000);
@@ -43,8 +42,9 @@ namespace Freeroam.Freemode.FreemodePlayer
 				Game.PlayerPed.Resurrect();
 				Screen.Fading.FadeIn(500);
 				Screen.Effects.Stop(ScreenEffect.DeathFailMpIn);
-				Screen.Hud.IsRadarVisible = true;
+				Screen.Hud.IsVisible = true;
 				died = false;
+				wastedScaleform.Dispose();
 			}
 		}
 
