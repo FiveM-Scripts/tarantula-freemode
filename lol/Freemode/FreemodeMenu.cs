@@ -1,7 +1,7 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.UI;
+using Freeroam.Freemode.Display;
 using Freeroam.Freemode.Phone;
-using Freeroam.Util;
 using Freeroam.Warehouses;
 using FreeroamShared;
 using NativeUI;
@@ -15,7 +15,7 @@ namespace Freeroam.Freemode
 		private MenuPool menuPool;
 		private UIMenu mainMenu;
 		private UIMenuListItem quickBlipItem;
-		private UIMenuItem joinItem;
+		private UIMenuItem killYourselfItem;
 		private bool menuVisible;
 
 		public FreemodeMenu()
@@ -29,24 +29,19 @@ namespace Freeroam.Freemode
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
 
-			joinItem = new UIMenuItem("Toggle ORG");
+			killYourselfItem = new UIMenuItem("Kill Yourself");
+			killYourselfItem.SetRightLabel("$500");
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
-				if (item == joinItem)
+				if (item == killYourselfItem)
 				{
-					if (OrganizationsHolder.GetPlayerOrganization(Game.Player) == OrganizationType.ONE)
-					{
-						OrganizationsHolder.SetPlayerOrganization(OrganizationType.NONE);
-						Screen.ShowNotification("No Org");
-					}
+					if (Money.Amount < 500)
+						Screen.ShowNotification("~r~You don't have enough money to kill yourself, faggot.");
 					else
 					{
-						OrganizationsHolder.SetPlayerOrganization(OrganizationType.ONE);
-						Screen.ShowNotification("Org One");
+						Game.PlayerPed.Health = 0;
+						Money.RemoveMoney(500);
 					}
-
-					if (OrganizationsHolder.IsPlayerCeoOfOrganization(Game.Player, OrganizationType.ONE))
-						Screen.ShowNotification("CEO!!!");
 				}
 			});
 
@@ -82,13 +77,14 @@ namespace Freeroam.Freemode
 					{
 						menuVisible = true;
 						mainMenu.Clear();
+						mainMenu.CurrentSelection = 0;
 						quickBlipItem = new UIMenuListItem("Quick Waypoint", World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
 						quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
 						{
 							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
 						});
 						mainMenu.AddItem(quickBlipItem);
-						//mainMenu.AddItem(joinItem);
+						mainMenu.AddItem(killYourselfItem);
 					}
 				}
 			}
