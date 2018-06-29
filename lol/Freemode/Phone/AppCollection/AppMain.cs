@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using FreeroamShared;
 
 namespace Freeroam.Freemode.Phone.AppCollection
 {

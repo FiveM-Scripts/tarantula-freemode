@@ -49,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Freemode\Blips\SessionBlips.cs" />
+    <Compile Include="Freemode\SessionPlayerBlips.cs" />
     <Compile Include="Freemode\Display\Info.cs" />
     <Compile Include="Freemode\Display\Money.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\FreemodeMenu.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Organization\OrganizationsHolder.cs" />
+    <Compile Include="Freemode\OrganizationsHolder.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppContacts.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppPlayerlist.cs" />
@@ -64,10 +64,9 @@
     <Compile Include="Freemode\Phone\PhoneAppHolder.cs" />
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
-    <Compile Include="Freemode\Phone\PhoneEnums.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Freemode\RelationshipGroupForcer.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Freemode\RelationshipGroupHolder.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Spawner.cs" />
+    <Compile Include="Freemode\RelationshipsHolder.cs" />
+    <Compile Include="Freemode\Spawner.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
     <Compile Include="Freemode\Phone\PhoneStarter.cs" />

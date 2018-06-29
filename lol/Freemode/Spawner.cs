@@ -4,7 +4,7 @@ using Freeroam.Util;
 using System;
 using System.Threading.Tasks;
 
-namespace Freeroam.Freemode.FreemodePlayer
+namespace Freeroam.Freemode
 {
 	class Spawner : BaseScript
 	{
@@ -32,7 +32,6 @@ namespace Freeroam.Freemode.FreemodePlayer
 			{
 				wastedScaleform = new Scaleform("MP_BIG_MESSAGE_FREEMODE");
 				died = true;
-				Screen.Hud.IsVisible = false;
 				Screen.Effects.Start(ScreenEffect.DeathFailMpIn);
 				Audio.PlaySoundFrontend("Bed", "WastedSounds");
 				await Delay(10000);
@@ -42,7 +41,6 @@ namespace Freeroam.Freemode.FreemodePlayer
 				Game.PlayerPed.Resurrect();
 				Screen.Fading.FadeIn(500);
 				Screen.Effects.Stop(ScreenEffect.DeathFailMpIn);
-				Screen.Hud.IsVisible = true;
 				died = false;
 				wastedScaleform.Dispose();
 			}

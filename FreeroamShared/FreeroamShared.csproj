@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventType.cs" />
+    <Compile Include="Decors.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="OrganizationType.cs" />
+    <Compile Include="PhoneEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

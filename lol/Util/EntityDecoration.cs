@@ -23,7 +23,7 @@ namespace Freeroam.Util
             return Function.Call<bool>(Hash.DECOR_EXIST_ON, entity.NativeValue, propertyName);
         }
 
-        public static bool HasDecor(this Entity ent, string propertyName)
+        public static bool _HasDecor(this Entity ent, string propertyName)
         {
             return ExistOn(ent, propertyName);
         }
@@ -48,17 +48,17 @@ namespace Freeroam.Util
             Function.Call(Hash.DECOR_SET_BOOL, entity.NativeValue, propertyName, boolValue);
         }
 
-        public static void SetDecor(this Entity ent, string propertyName, float value)
+        public static void _SetDecor(this Entity ent, string propertyName, float value)
         {
             Set(ent, propertyName, value);
         }
 
-        public static void SetDecor(this Entity ent, string propertyName, int value)
+        public static void _SetDecor(this Entity ent, string propertyName, int value)
         {
             Set(ent, propertyName, value);
         }
 
-        public static void SetDecor(this Entity ent, string propertyName, bool value)
+        public static void _SetDecor(this Entity ent, string propertyName, bool value)
         {
             Set(ent, propertyName, value);
         }
@@ -93,7 +93,7 @@ namespace Freeroam.Util
             return (T)Function.Call<T>(nativeMethod, entity.NativeValue, propertyName);
         }
 
-        public static T GetDecor<T>(this Entity ent, string propertyName)
+        public static T _GetDecor<T>(this Entity ent, string propertyName)
         {
             return Get<T>(ent, propertyName);
         }

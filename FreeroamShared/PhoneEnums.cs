@@ -1,4 +1,4 @@
-﻿namespace Freeroam.Freemode.Phone
+﻿namespace FreeroamShared
 {
 	public enum PhoneAppIcon
 	{
@@ -57,5 +57,5 @@
 		ICON_FIRE,
 		ICON_PAGES2,
 
-}
+	}
 }

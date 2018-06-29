@@ -82,12 +82,12 @@ namespace Freeroam.Warehouses
 				insideWarehouse = warehouse;
 				WarehouseState.LastWarehouse = warehouse;
 				await RequestTeleport(WarehouseTeleport.Inside);
-				TriggerEvent(EventType.WAREHOUSE_IN);
+				TriggerEvent(Events.WAREHOUSE_IN);
 			}
 			else
 			{
 				await RequestTeleport(WarehouseTeleport.Outside);
-				TriggerEvent(EventType.WAREHOUSE_OUT);
+				TriggerEvent(Events.WAREHOUSE_OUT);
 				insideWarehouse = null;
 			}
 		}

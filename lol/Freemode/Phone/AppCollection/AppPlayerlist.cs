@@ -79,7 +79,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 								Screen.ShowNotification("~r~Please enter a message.");
 							else
 							{
-								BaseScript.TriggerServerEvent(EventType.MESSAGE_FORWARD_PLAYER, selectedPlayer.ServerId, message);
+								BaseScript.TriggerServerEvent(Events.MESSAGE_FORWARD_PLAYER, selectedPlayer.ServerId, message);
 								Screen.ShowNotification("~g~Message sent.");
 							}
 						}

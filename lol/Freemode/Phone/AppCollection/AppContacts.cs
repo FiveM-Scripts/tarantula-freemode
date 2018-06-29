@@ -39,7 +39,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 									Screen.ShowNotification("~r~Please enter a message.");
 								else
 								{
-									BaseScript.TriggerServerEvent(EventType.MESSAGE_FORWARD_ASSISTANT, message);
+									BaseScript.TriggerServerEvent(Events.MESSAGE_FORWARD_ASSISTANT, message);
 									Screen.ShowNotification("~g~Message sent.");
 								}
 							}

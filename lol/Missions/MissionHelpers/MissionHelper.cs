@@ -1,7 +1,7 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
-using Freeroam.Freemode.FreemodePlayer.Freemode;
+using Freeroam.Freemode;
 using Freeroam.Util;
 using System.Threading.Tasks;
 
@@ -19,7 +19,7 @@ namespace Freeroam.Missions.MissionHelpers
 			Ped ped = await EntityUtil.CreatePed(model, PedType.PED_TYPE_MISSION, pos, heading);
 			if (weaponHash != WeaponHash.Unarmed)
 				ped.Weapons.Give(weaponHash, int.MaxValue, false, true);
-			ped.RelationshipGroup = RelationshipGroupHolder.NeutralEnemyPeds;
+			ped.RelationshipGroup = RelationshipsHolder.NeutralEnemyPeds;
 			ped.IsEnemy = true;
 			API.SetPedEnemyAiBlip(ped.Handle, true);
 			API.HideSpecialAbilityLockonOperation(ped.Handle, false);

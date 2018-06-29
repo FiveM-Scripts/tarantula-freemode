@@ -2,10 +2,10 @@
 {
 	public enum OrganizationType
 	{
+		NONE,
 		ONE,
 		TWO,
 		THREE,
-		FOUR,
-		FIVE
+		FOUR
 	}
 }

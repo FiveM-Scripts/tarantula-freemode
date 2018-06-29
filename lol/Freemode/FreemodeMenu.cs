@@ -1,6 +1,9 @@
 ﻿using CitizenFX.Core;
+using CitizenFX.Core.UI;
 using Freeroam.Freemode.Phone;
+using Freeroam.Util;
 using Freeroam.Warehouses;
+using FreeroamShared;
 using NativeUI;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ namespace Freeroam.Freemode
 		private MenuPool menuPool;
 		private UIMenu mainMenu;
 		private UIMenuListItem quickBlipItem;
+		private UIMenuItem joinItem;
 		private bool menuVisible;
 
 		public FreemodeMenu()
@@ -24,6 +28,27 @@ namespace Freeroam.Freemode
 			};
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
+
+			joinItem = new UIMenuItem("Toggle ORG");
+			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
+			{
+				if (item == joinItem)
+				{
+					if (OrganizationsHolder.GetPlayerOrganization(Game.Player) == OrganizationType.ONE)
+					{
+						OrganizationsHolder.SetPlayerOrganization(OrganizationType.NONE);
+						Screen.ShowNotification("No Org");
+					}
+					else
+					{
+						OrganizationsHolder.SetPlayerOrganization(OrganizationType.ONE);
+						Screen.ShowNotification("Org One");
+					}
+
+					if (OrganizationsHolder.IsPlayerCeoOfOrganization(Game.Player, OrganizationType.ONE))
+						Screen.ShowNotification("CEO!!!");
+				}
+			});
 
 			Tick += OnTick;
 		}
@@ -63,6 +88,7 @@ namespace Freeroam.Freemode
 							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
 						});
 						mainMenu.AddItem(quickBlipItem);
+						//mainMenu.AddItem(joinItem);
 					}
 				}
 			}

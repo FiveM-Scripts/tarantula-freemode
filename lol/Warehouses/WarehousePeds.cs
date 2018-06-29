@@ -1,6 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Freeroam.Freemode.FreemodePlayer.Freemode;
+using Freeroam.Freemode;
 using Freeroam.Util;
 using FreeroamShared;
 using System;
@@ -16,8 +16,8 @@ namespace Freeroam.Warehouses
 		
 		public WarehousePeds()
 		{
-			EventHandlers[EventType.WAREHOUSE_IN] += new Action(SpawnWarehousePeds);
-			EventHandlers[EventType.WAREHOUSE_OUT] += new Action(DespawnWarehousePeds);
+			EventHandlers[Events.WAREHOUSE_IN] += new Action(SpawnWarehousePeds);
+			EventHandlers[Events.WAREHOUSE_OUT] += new Action(DespawnWarehousePeds);
 
 			Tick += OnTick;
 		}
@@ -86,7 +86,7 @@ namespace Freeroam.Warehouses
 				await Delay(1);
 
 			Ped ped = await EntityUtil.CreatePed(model, PedType.PED_TYPE_SPECIAL, pos, heading, false);
-			ped.RelationshipGroup = RelationshipGroupHolder.WarehousePeds;
+			ped.RelationshipGroup = RelationshipsHolder.WarehousePeds;
 			ped.CanRagdoll = false;
 			ped.AlwaysKeepTask = true;
 			peds.Add(ped);

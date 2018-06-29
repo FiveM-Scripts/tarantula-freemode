@@ -32,8 +32,8 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 		public MessagesHolder()
 		{
-			EventHandlers[EventType.MESSAGE_FORWARD] += new Action<string, string, string>(AddMessage);
-			EventHandlers[EventType.MESSAGE_FORWARD_PLAYER] += new Action<int, string>(AddPlayerMessage);
+			EventHandlers[Events.MESSAGE_FORWARD] += new Action<string, string, string>(AddMessage);
+			EventHandlers[Events.MESSAGE_FORWARD_PLAYER] += new Action<int, string>(AddPlayerMessage);
 		}
 
 		public static void AddMessage(string sender, string message, string charImg)

@@ -1,4 +1,5 @@
 ﻿using Freeroam.Freemode.Phone.AppCollection;
+using FreeroamShared;
 using System;
 
 namespace Freeroam.Freemode.Phone
