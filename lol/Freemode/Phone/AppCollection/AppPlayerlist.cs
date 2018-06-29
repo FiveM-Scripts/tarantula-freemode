@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.UI;
+using FreeroamShared;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -78,7 +79,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 								Screen.ShowNotification("~r~Please enter a message.");
 							else
 							{
-								BaseScript.TriggerServerEvent("freeroam:sendPlayerMessage", selectedPlayer.ServerId, message);
+								BaseScript.TriggerServerEvent(EventType.MESSAGE_FORWARD_PLAYER, selectedPlayer.ServerId, message);
 								Screen.ShowNotification("~g~Message sent.");
 							}
 						}

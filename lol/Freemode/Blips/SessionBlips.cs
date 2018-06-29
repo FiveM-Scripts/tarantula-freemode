@@ -32,10 +32,15 @@ namespace Freeroam.Freemode.Blips
 			}
 		}
 
+		private void HandleBlipColor(Blip blip, Player player)
+		{
+			
+		}
+
 		private void FadeBlipByDistance(Blip blip)
 		{
 			int distance = (int) World.GetDistance(Game.PlayerPed.Position, blip.Position);
-			blip.Alpha = 255 - distance > 255 ? 0 : 255;
+			blip.Alpha = 255 * 2 - distance > 255 * 2 ? 0 : 255;
 		}
 	}
 }

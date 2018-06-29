@@ -1,6 +1,6 @@
 ﻿using CitizenFX.Core;
 
-namespace Freeroam.Freemode.FreemodePlayer.Relationship
+namespace Freeroam.Freemode.FreemodePlayer.Freemode
 {
 	public class RelationshipGroupHolder : BaseScript
 	{

@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.UI;
+using FreeroamShared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 									Screen.ShowNotification("~r~Please enter a message.");
 								else
 								{
-									BaseScript.TriggerServerEvent("freeroam:sendIdiotMessage", message);
+									BaseScript.TriggerServerEvent(EventType.MESSAGE_FORWARD_ASSISTANT, message);
 									Screen.ShowNotification("~g~Message sent.");
 								}
 							}

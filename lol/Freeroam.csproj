@@ -54,6 +54,7 @@
     <Compile Include="Freemode\Display\Money.cs" />
     <Compile Include="Freemode\Egg\UFO.cs" />
     <Compile Include="Freemode\FreemodeMenu.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Organization\OrganizationsHolder.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppMain.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppContacts.cs" />
     <Compile Include="Freemode\Phone\AppCollection\AppPlayerlist.cs" />
@@ -64,8 +65,8 @@
     <Compile Include="Freemode\Phone\PhoneAppInterface.cs" />
     <Compile Include="Freemode\Phone\PhoneAppStarter.cs" />
     <Compile Include="Freemode\Phone\PhoneEnums.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Relationship\RelationshipGroupForcer.cs" />
-    <Compile Include="Freemode\FreemodePlayer\Relationship\RelationshipGroupHolder.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Freemode\RelationshipGroupForcer.cs" />
+    <Compile Include="Freemode\FreemodePlayer\Freemode\RelationshipGroupHolder.cs" />
     <Compile Include="Freemode\FreemodePlayer\Spawner.cs" />
     <Compile Include="Missions\MissionCollection\Delivery3.cs" />
     <Compile Include="PauseMenuTitleHandler.cs" />
@@ -99,6 +100,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FreeroamShared\FreeroamShared.csproj">
+      <Project>{25b42325-9a62-4a2e-a784-322e87757fc3}</Project>
+      <Name>FreeroamShared</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

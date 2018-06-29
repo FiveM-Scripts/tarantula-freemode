@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FreeroamShared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,8 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 		public MessagesHolder()
 		{
-			EventHandlers["freeroam:forwardMessage"] += new Action<string, string, string>(AddMessage);
-			EventHandlers["freeroam:forwardPlayerMessage"] += new Action<int, string>(AddPlayerMessage);
+			EventHandlers[EventType.MESSAGE_FORWARD] += new Action<string, string, string>(AddMessage);
+			EventHandlers[EventType.MESSAGE_FORWARD_PLAYER] += new Action<int, string>(AddPlayerMessage);
 		}
 
 		public static void AddMessage(string sender, string message, string charImg)

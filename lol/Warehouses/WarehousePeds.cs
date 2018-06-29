@@ -1,7 +1,8 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Freeroam.Freemode.FreemodePlayer.Relationship;
+using Freeroam.Freemode.FreemodePlayer.Freemode;
 using Freeroam.Util;
+using FreeroamShared;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,8 +16,8 @@ namespace Freeroam.Warehouses
 		
 		public WarehousePeds()
 		{
-			EventHandlers["freemode:warehouseIn"] += new Action(SpawnWarehousePeds);
-			EventHandlers["freemode:warehouseOut"] += new Action(DespawnWarehousePeds);
+			EventHandlers[EventType.WAREHOUSE_IN] += new Action(SpawnWarehousePeds);
+			EventHandlers[EventType.WAREHOUSE_OUT] += new Action(DespawnWarehousePeds);
 
 			Tick += OnTick;
 		}

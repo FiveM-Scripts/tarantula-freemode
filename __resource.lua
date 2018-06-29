@@ -8,5 +8,5 @@ client_scripts {
 	"nativeui.net.dll",
 	"freeroam.net.dll"
 }
-
 server_script "freeroamserver.net.dll"
+shared_script "freeroamshared.net.dll"

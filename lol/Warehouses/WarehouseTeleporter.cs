@@ -2,6 +2,7 @@
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Freeroam.Missions;
+using FreeroamShared;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -81,12 +82,12 @@ namespace Freeroam.Warehouses
 				insideWarehouse = warehouse;
 				WarehouseState.LastWarehouse = warehouse;
 				await RequestTeleport(WarehouseTeleport.Inside);
-				TriggerEvent("freemode:warehouseIn");
+				TriggerEvent(EventType.WAREHOUSE_IN);
 			}
 			else
 			{
 				await RequestTeleport(WarehouseTeleport.Outside);
-				TriggerEvent("freemode:warehouseOut");
+				TriggerEvent(EventType.WAREHOUSE_OUT);
 				insideWarehouse = null;
 			}
 		}
