@@ -45,17 +45,17 @@ namespace Freeroam.Warehouses
 					if (World.GetDistance(Game.PlayerPed.Position, entryPointPos) < 1f)
 					{
 						if (Game.Player.WantedLevel > 0)
-							Screen.DisplayHelpTextThisFrame("You can't enter with a active Wanted Level.");
+							Screen.DisplayHelpTextThisFrame(Strings.CLIENT_WAREHOUSE_WANTED);
 						else
 						{
-							enterKeyText = "Press ~INPUT_PICKUP~ to enter your warehouse.";
+							enterKeyText = Strings.CLIENT_WAREHOUSE_ENTER;
 							closestWarehouse = warehouse;
 							tpPos = closestWarehouse.WarehouseInterior.TeleportPoint;
 						}
 					}
 					else if (World.GetDistance(Game.PlayerPed.Position, exitPointPos) < 1f)
 					{
-						enterKeyText = "Press ~INPUT_PICKUP~ to exit your warehouse.";
+						enterKeyText = Strings.CLIENT_WAREHOUSE_EXIT;
 						closestWarehouse = warehouse;
 						tpPos = closestWarehouse.EntryPoint;
 					}

@@ -2,6 +2,8 @@
 using CitizenFX.Core.Native;
 using Freeroam.Missions.MissionHelpers;
 using Freeroam.Util;
+using FreeroamShared;
+using System;
 using System.Threading.Tasks;
 
 namespace Freeroam.Missions.MissionCollection
@@ -32,7 +34,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.Alpha = 0;
 
-			MissionHelper.DrawTaskSubtitle($"Locate the ~b~{deliveryCar._GetLabel()}~w~.");
+			MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_LOCATE, deliveryCar._GetLabel()));
 			BaseScript.TriggerEvent("mtracker:settargets", new int[] { deliveryCar.Handle });
 			BaseScript.TriggerEvent("mtracker:start");
 		}

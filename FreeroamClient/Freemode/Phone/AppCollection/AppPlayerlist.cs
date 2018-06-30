@@ -26,18 +26,18 @@ namespace Freeroam.Freemode.Phone.AppCollection
 
 			int slot = 0;
 			if (inSubMenu)
-				phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, "Send Message");
+				phoneScaleform.CallFunction("SET_DATA_SLOT", 2, slot++, -1, Strings.CLIENT_PHONE_APP_PLAYERLIST_SEND);
 			else
 			{
 				Player[] players = new PlayerList().Where(player => player != Game.Player).ToArray();
 				playersInGame = players.Length == 0 ? false : true;
 				if (!playersInGame)
-					phoneScaleform.CallFunction("SET_DATA_SLOT", 13, slot++, -1, "No Players");
+					phoneScaleform.CallFunction("SET_DATA_SLOT", 13, slot++, -1, Strings.CLIENT_PHONE_APP_PLAYERLIST_NO_PLAYERS);
 				else
 					foreach (Player player in players)
 						phoneScaleform.CallFunction("SET_DATA_SLOT", 13, slot++, -1, player.Name);
 			}
-			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedPlayer.Name : "Playerlist");
+			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedPlayer.Name : Strings.CLIENT_PHONE_APP_PLAYERLIST);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", inSubMenu ? 2 : 13, selected);
 
 			phoneScaleform.CallFunction("SET_SOFT_KEYS", (int) PhoneSelectSlot.SLOT_RIGHT, true, (int) PhoneSelectIcon.ICON_BACK);
@@ -76,11 +76,11 @@ namespace Freeroam.Freemode.Phone.AppCollection
 						{
 							message = message.Trim();
 							if (message.Length == 0)
-								Screen.ShowNotification("~r~Please enter a message.");
+								Screen.ShowNotification(Strings.CLIENT_PHONE_APP_PLAYERLIST_SEND_NO_MSG);
 							else
 							{
 								BaseScript.TriggerServerEvent(Events.MESSAGE_FORWARD_PLAYER, selectedPlayer.ServerId, message);
-								Screen.ShowNotification("~g~Message sent.");
+								Screen.ShowNotification(Strings.CLIENT_PHONE_APP_PLAYERLIST_SENT);
 							}
 						}
 					}

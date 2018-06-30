@@ -4,6 +4,7 @@ using CitizenFX.Core.UI;
 using Freeroam.Freemode.Phone;
 using Freeroam.Missions;
 using Freeroam.Missions.MissionHolders;
+using FreeroamShared;
 using NativeUI;
 using System;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace Freeroam.Warehouses
 		public WarehouseMenu()
 		{
 			menuPool = new MenuPool();
-			actionMenu = new UIMenu("Business Menu", "Actions");
-			stealVehicleItem = new UIMenuItem("Steal New Vehicle");
+			actionMenu = new UIMenu(Strings.CLIENT_WAREHOUSE_MENU_TITLE, Strings.CLIENT_WAREHOUSE_MENU_SUBTITLE);
+			stealVehicleItem = new UIMenuItem(Strings.CLIENT_WAREHOUSE_MENU_ITEM_STEAL);
 			actionMenu.AddItem(stealVehicleItem);
 			menuPool.Add(actionMenu);
 

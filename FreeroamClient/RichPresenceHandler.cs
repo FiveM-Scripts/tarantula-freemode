@@ -2,6 +2,7 @@
 using CitizenFX.Core.Native;
 using Freeroam.Missions;
 using Freeroam.Warehouses;
+using FreeroamShared;
 using System.Threading.Tasks;
 
 namespace Freeroam
@@ -18,11 +19,11 @@ namespace Freeroam
 			await Delay(5000);
 
 			if (MissionState.MissionRunning)
-				API.SetRichPresence("Playing A Mission");
+				API.SetRichPresence(Strings.CLIENT_RP_MISSION);
 			else if (WarehouseState.IsInsideWarehouse)
-				API.SetRichPresence("Inside Their Warehouse");
+				API.SetRichPresence(Strings.CLIENT_RP_WAREHOUSE);
 			else
-				API.SetRichPresence("Freeroaming");
+				API.SetRichPresence(Strings.CLIENT_RP_FREEROAM);
 		}
 	}
 }

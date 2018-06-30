@@ -1,6 +1,7 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using Freeroam.Util;
+using FreeroamShared;
 using System;
 using System.Threading.Tasks;
 
@@ -52,7 +53,7 @@ namespace Freeroam.Freemode
 
 			if (died)
 			{
-				wastedScaleform.CallFunction("SHOW_SHARD_WASTED_MP_MESSAGE", "~r~WASTED", "", -1, true, true);
+				wastedScaleform.CallFunction("SHOW_SHARD_WASTED_MP_MESSAGE", Strings.WASTED, "", -1, true, true);
 				wastedScaleform.Render2D();
 			}
 		}

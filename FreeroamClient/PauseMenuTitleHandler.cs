@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FreeroamShared;
 
 namespace Freeroam
 {
@@ -7,7 +8,7 @@ namespace Freeroam
 	{
 		public PauseMenuTitleHandler()
 		{
-			API.AddTextEntry("FE_THDR_GTAO", "FiveM - Freeroam");
+			API.AddTextEntry("FE_THDR_GTAO", Strings.CLIENT_FE_THDR_GTAO);
 		}
 	}
 }

@@ -2,6 +2,8 @@
 using CitizenFX.Core.Native;
 using Freeroam.Missions.MissionHelpers;
 using Freeroam.Util;
+using FreeroamShared;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -62,7 +64,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.ShowRoute = true;
 
-			MissionHelper.DrawTaskSubtitle($"Steal the ~b~{deliveryCar._GetLabel()}~w~.");
+			MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_STEAL, deliveryCar._GetLabel()));
 		}
 
 		public async Task OnTick()

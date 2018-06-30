@@ -57,7 +57,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			API.SetNotificationTextEntry("STRING");
 			API.AddTextComponentString(message);
-			API.SetNotificationMessage(charImg, charImg, true, 1, "New Message", sender);
+			API.SetNotificationMessage(charImg, charImg, true, 1, Strings.CLIENT_PHONE_APP_MESSAGES_RECEIVE, sender);
 			API.DrawNotification(true, true);
 			Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default");
 		}

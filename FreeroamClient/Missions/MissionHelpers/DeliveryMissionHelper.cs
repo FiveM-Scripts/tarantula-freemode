@@ -3,6 +3,8 @@ using CitizenFX.Core.Native;
 using Freeroam.Freemode.Display;
 using Freeroam.Util;
 using Freeroam.Warehouses;
+using FreeroamShared;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -37,7 +39,7 @@ namespace Freeroam.Missions.MissionHelpers
 		{
 			if (deliveryCar._IsBroken())
 			{
-				MissionHelper.DrawTaskSubtitle($"~r~The {vehicleLabel} was destroyed.");
+				MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_DESTROYED, vehicleLabel));
 				MissionStarter.RequestStopCurrentMission();
 			}
 		}
@@ -55,7 +57,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (!wantedLevelWarned)
 				{
-					MissionHelper.DrawTaskSubtitle("Lose your Wanted Level.");
+					MissionHelper.DrawTaskSubtitle(Strings.CLIENT_MISSION_LOSE_WANTED);
 					importBlip.Alpha = 0;
 					importBlip.ShowRoute = false;
 					wantedLevelWarned = true;
@@ -63,18 +65,12 @@ namespace Freeroam.Missions.MissionHelpers
 			}
 			else
 			{
-				if (wantedLevelWarned)
-				{
-					MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
-					importBlip.Alpha = 255;
-					importBlip.ShowRoute = true;
-					wantedLevelWarned = false;
-				}
-				else if (Game.PlayerPed.CurrentVehicle == deliveryCar)
+				wantedLevelWarned = false;
+				if (Game.PlayerPed.CurrentVehicle == deliveryCar)
 				{
 					if (!insideCar)
 					{
-						MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
+						MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_RETURN_TO_WAREHOUSE, vehicleLabel));
 						deliveryCar.AttachedBlip.Alpha = 0;
 						deliveryCar.AttachedBlip.ShowRoute = false;
 						importBlip.Alpha = 255;
@@ -86,7 +82,7 @@ namespace Freeroam.Missions.MissionHelpers
 				{
 					if (insideCar)
 					{
-						MissionHelper.DrawTaskSubtitle($"Get back into the ~b~{vehicleLabel}~w~.");
+						MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_RETURN_TO_VEHICLE, vehicleLabel));
 						deliveryCar.AttachedBlip.Alpha = 255;
 						deliveryCar.AttachedBlip.ShowRoute = true;
 						importBlip.Alpha = 0;
@@ -114,10 +110,8 @@ namespace Freeroam.Missions.MissionHelpers
 		{
 			if (!delivering)
 			{
-				MissionHelper.DrawTaskSubtitle($"Bring the ~b~{vehicleLabel}~w~ to the ~g~Warehouse~w~.");
 				importBlip = World.CreateBlip(importPoint);
 				importBlip.Color = BlipColor.Green;
-				importBlip.ShowRoute = true;
 				missionMusic.PlayActionMusic();
 
 				foreach (Ped enemy in enemies)

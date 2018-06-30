@@ -21,7 +21,7 @@ namespace Freeroam.Freemode
 		public FreemodeMenu()
 		{
 			menuPool = new MenuPool();
-			mainMenu = new UIMenu("Interaction", "Go get a Hobby")
+			mainMenu = new UIMenu(Strings.CLIENT_INTERACTION_TITLE, Strings.CLIENT_INTERACTION_SUBTITLE)
 			{
 				MouseControlsEnabled = false,
 				ControlDisablingEnabled = false
@@ -29,14 +29,14 @@ namespace Freeroam.Freemode
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
 
-			killYourselfItem = new UIMenuItem("Kill Yourself");
+			killYourselfItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_KYS);
 			killYourselfItem.SetRightLabel("$500");
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == killYourselfItem)
 				{
 					if (Money.Amount < 500)
-						Screen.ShowNotification("~r~You don't have enough money to kill yourself, faggot.");
+						Screen.ShowNotification(Strings.CLIENT_INTERACTION_ITEM_KYS_NO_MONEY);
 					else
 					{
 						Game.PlayerPed.Kill();
@@ -77,7 +77,7 @@ namespace Freeroam.Freemode
 					{
 						menuVisible = true;
 						mainMenu.Clear();
-						quickBlipItem = new UIMenuListItem("Quick Waypoint", World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
+						quickBlipItem = new UIMenuListItem(Strings.CLIENT_INTERACTION_ITEM_QUICK_NAV, World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
 						quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
 						{
 							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
