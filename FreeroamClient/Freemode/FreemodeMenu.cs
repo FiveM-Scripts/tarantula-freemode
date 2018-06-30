@@ -39,7 +39,7 @@ namespace Freeroam.Freemode
 						Screen.ShowNotification("~r~You don't have enough money to kill yourself, faggot.");
 					else
 					{
-						Game.PlayerPed.Health = 0;
+						Game.PlayerPed.Kill();
 						Money.RemoveMoney(500);
 					}
 				}
