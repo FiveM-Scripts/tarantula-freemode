@@ -5,6 +5,7 @@
 
 # CUSTOM
 webserver/
+dist/*.dll
 
 # User-specific files
 *.suo
