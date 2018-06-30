@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freeroam", "lol\Freeroam.csproj", "{FF382436-7B26-44DF-A5CA-5A146A8E4FE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeroamClient", "FreeroamClient\Freeroam.csproj", "{FF382436-7B26-44DF-A5CA-5A146A8E4FE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeroamServer", "FreeroamServer\FreeroamServer.csproj", "{E8BFA7D6-11CA-4DED-A30B-C2E099C127B6}"
 EndProject
