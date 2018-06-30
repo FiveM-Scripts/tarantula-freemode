@@ -77,7 +77,6 @@ namespace Freeroam.Freemode
 					{
 						menuVisible = true;
 						mainMenu.Clear();
-						mainMenu.CurrentSelection = 0;
 						quickBlipItem = new UIMenuListItem("Quick Waypoint", World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
 						quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
 						{
@@ -85,6 +84,7 @@ namespace Freeroam.Freemode
 						});
 						mainMenu.AddItem(quickBlipItem);
 						mainMenu.AddItem(killYourselfItem);
+						mainMenu.CurrentSelection = 0;
 					}
 				}
 			}
