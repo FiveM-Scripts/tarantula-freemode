@@ -24,9 +24,10 @@
 
 		public const string CLIENT_INTERACTION_TITLE = "Interaction";
 		public const string CLIENT_INTERACTION_SUBTITLE = "Go get a Hobby";
+		public const string CLIENT_INTERACTION_ITEM_QUICK_NAV = "Quick Navigation";
 		public const string CLIENT_INTERACTION_ITEM_KYS = "Kill Yourself";
 		public const string CLIENT_INTERACTION_ITEM_KYS_NO_MONEY = "~r~You don't have enough money to kill yourself, faggot.";
-		public const string CLIENT_INTERACTION_ITEM_QUICK_NAV = "Quick Navigation";
+		public const string CLIENT_INTERACTION_ITEM_CEO = "Toggle CEO";
 
 		public const string CLIENT_MISSION_LOSE_WANTED = "Lose your Wanted Level.";
 		public const string CLIENT_MISSION_DELIVERY_STEAL = "Steal the ~b~{0}~w~.";

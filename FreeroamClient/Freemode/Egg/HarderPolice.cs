@@ -20,40 +20,41 @@ namespace Freeroam.Freemode.Egg
 		{
 			await Delay(100);
 
-			foreach (Ped ped in World.GetAllPeds().Where(ped => !ped.IsPlayer))
-			{
-				int pedType = API.GetPedType(ped.Handle);
-				if (pedType == 6 || pedType == 27 || pedType == 29)
+			if (Game.Player.WantedLevel > 0)
+				foreach (Ped ped in World.GetAllPeds().Where(ped => !ped.IsPlayer))
 				{
-					ped.FiringPattern = FiringPattern.FullAuto;
-					ped.ShootRate = 1;
-
-					if (Game.PlayerPed.IsDead && Game.Player.WantedLevel > 0)
-						ped.Task.ShootAt(Game.PlayerPed, 200);
-
-					if (!ped._HasDecor(Decors.COP_WEAPONIZED))
+					int pedType = API.GetPedType(ped.Handle);
+					if (pedType == 6 || pedType == 27 || pedType == 29)
 					{
-						if (API.GetRandomIntInRange(0, 101) == 100)
+						ped.FiringPattern = FiringPattern.FullAuto;
+						ped.ShootRate = 1;
+
+						if (Game.PlayerPed.IsDead)
+							ped.Task.ShootAt(Game.PlayerPed, 200);
+
+						if (!ped._HasDecor(Decors.COP_WEAPONIZED))
 						{
-							WeaponHash[] possibleWeapons;
-							if (pedType == 6)
-								possibleWeapons = new WeaponHash[] {WeaponHash.PistolMk2, WeaponHash.Pistol50, WeaponHash.CombatPistol, WeaponHash.HeavyPistol,
-									WeaponHash.VintagePistol, WeaponHash.APPistol, WeaponHash.StunGun, WeaponHash.BullpupShotgun, WeaponHash.SMG, WeaponHash.SMGMk2,
-									WeaponHash.AssaultSMG, WeaponHash.CombatPDW};
-							else if (pedType == 27)
-								possibleWeapons = new WeaponHash[] {WeaponHash.APPistol, WeaponHash.SMGMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine,
-									WeaponHash.PumpShotgun, WeaponHash.BullpupRifle, WeaponHash.AdvancedRifle, WeaponHash.MarksmanRifle, WeaponHash.AssaultShotgun,
-									WeaponHash.HeavyShotgun, WeaponHash.SniperRifle, WeaponHash.HeavySniper, WeaponHash.HeavySniperMk2};
-							else
-								possibleWeapons = new WeaponHash[] {WeaponHash.PumpShotgun, WeaponHash.AssaultShotgun, WeaponHash.HeavyShotgun, WeaponHash.CombatPDW,
-									WeaponHash.AssaultRifle, WeaponHash.AssaultRifleMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine, WeaponHash.AdvancedRifle,
-									WeaponHash.MG, WeaponHash.CombatMG, WeaponHash.CombatMGMk2, WeaponHash.Minigun, WeaponHash.RPG};
-							ped.Weapons.Give(possibleWeapons[API.GetRandomIntInRange(0, possibleWeapons.Count())], int.MaxValue, false, true);
+							if (API.GetRandomIntInRange(0, 101) == 100)
+							{
+								WeaponHash[] possibleWeapons;
+								if (pedType == 6)
+									possibleWeapons = new WeaponHash[] {WeaponHash.PistolMk2, WeaponHash.Pistol50, WeaponHash.CombatPistol, WeaponHash.HeavyPistol,
+										WeaponHash.VintagePistol, WeaponHash.APPistol, WeaponHash.StunGun, WeaponHash.BullpupShotgun, WeaponHash.SMG, WeaponHash.SMGMk2,
+										WeaponHash.AssaultSMG, WeaponHash.CombatPDW};
+								else if (pedType == 27)
+									possibleWeapons = new WeaponHash[] {WeaponHash.APPistol, WeaponHash.SMGMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine,
+										WeaponHash.PumpShotgun, WeaponHash.BullpupRifle, WeaponHash.AdvancedRifle, WeaponHash.MarksmanRifle, WeaponHash.AssaultShotgun,
+										WeaponHash.HeavyShotgun, WeaponHash.SniperRifle, WeaponHash.HeavySniper, WeaponHash.HeavySniperMk2};
+								else
+									possibleWeapons = new WeaponHash[] {WeaponHash.PumpShotgun, WeaponHash.AssaultShotgun, WeaponHash.HeavyShotgun, WeaponHash.CombatPDW,
+										WeaponHash.AssaultRifle, WeaponHash.AssaultRifleMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine, WeaponHash.AdvancedRifle,
+										WeaponHash.MG, WeaponHash.CombatMG, WeaponHash.CombatMGMk2, WeaponHash.Minigun, WeaponHash.RPG};
+								ped.Weapons.Give(possibleWeapons[API.GetRandomIntInRange(0, possibleWeapons.Count())], int.MaxValue, false, true);
+							}
+							ped._SetDecor(Decors.COP_WEAPONIZED, true);
 						}
-						ped._SetDecor(Decors.COP_WEAPONIZED, true);
 					}
 				}
-			}
 		}
 	}
 }

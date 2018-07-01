@@ -1,6 +1,5 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.UI;
-using Freeroam.Freemode.Display;
 using Freeroam.Freemode.Phone;
 using Freeroam.Warehouses;
 using FreeroamShared;
@@ -16,6 +15,7 @@ namespace Freeroam.Freemode
 		private UIMenu mainMenu;
 		private UIMenuListItem quickBlipItem;
 		private UIMenuItem killYourselfItem;
+		private UIMenuItem toggleCeoItem;
 		private bool menuVisible;
 
 		public FreemodeMenu()
@@ -28,12 +28,17 @@ namespace Freeroam.Freemode
 			};
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
-
 			killYourselfItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_KYS);
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == killYourselfItem)
 					Game.PlayerPed.Kill();
+			});
+			toggleCeoItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_CEO);
+			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
+			{
+				if (item == toggleCeoItem)
+					Screen.ShowNotification("👻");
 			});
 
 			Tick += OnTick;
@@ -75,6 +80,7 @@ namespace Freeroam.Freemode
 						});
 						mainMenu.AddItem(quickBlipItem);
 						mainMenu.AddItem(killYourselfItem);
+						mainMenu.AddItem(toggleCeoItem);
 						mainMenu.CurrentSelection = 0;
 					}
 				}
