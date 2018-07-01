@@ -28,6 +28,10 @@
 		public const string CLIENT_INTERACTION_ITEM_KYS = "Kill Yourself";
 		public const string CLIENT_INTERACTION_ITEM_KYS_NO_MONEY = "~r~You don't have enough money to kill yourself, faggot.";
 		public const string CLIENT_INTERACTION_ITEM_CEO = "Toggle CEO";
+		public const string CLIENT_INTERACTION_ITEM_CEO_NONAVAIL = "~r~Too many active organizations; Try again later.";
+
+		public const string CLIENT_ORG_ENTER = "~y~You joined an organization.";
+		public const string CLIENT_ORG_LEAVE = "~y~You left the organization.";
 
 		public const string CLIENT_MISSION_LOSE_WANTED = "Lose your Wanted Level.";
 		public const string CLIENT_MISSION_DELIVERY_STEAL = "Steal the ~b~{0}~w~.";

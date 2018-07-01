@@ -94,13 +94,13 @@ namespace Freeroam.Freemode.Phone.AppCollection
 					PhoneAppStarter.MainApp();
 				else
 				{
-					Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael");
+					Audio.ReleaseSound(Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael"));
 					inSubMenu = false;
 				}
 			}
 
 			if (pressed)
-				Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default");
+				Audio.ReleaseSound(Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default"));
 		}
 
 		public void Stop()

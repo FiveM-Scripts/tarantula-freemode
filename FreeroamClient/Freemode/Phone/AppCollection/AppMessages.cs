@@ -59,7 +59,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 			API.AddTextComponentString(message);
 			API.SetNotificationMessage(charImg, charImg, true, 1, Strings.CLIENT_PHONE_APP_MESSAGES_RECEIVE, sender);
 			API.DrawNotification(true, true);
-			Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default");
+			Audio.ReleaseSound(Audio.PlaySoundFrontend("Text_Arrive_Tone", "Phone_SoundSet_Default"));
 		}
 	}
 
@@ -121,13 +121,13 @@ namespace Freeroam.Freemode.Phone.AppCollection
 					PhoneAppStarter.MainApp();
 				else
 				{
-					Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael");
+					Audio.ReleaseSound(Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael"));
 					inSubMenu = false;
 				}
 			}
 
 			if (pressed)
-				Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default");
+				Audio.ReleaseSound(Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default"));
 		}
 
 		public void Stop()

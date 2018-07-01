@@ -111,7 +111,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 				PhoneAppStarter.MainApp();
 
 			if (pressed)
-				Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default");
+				Audio.ReleaseSound(Audio.PlaySoundFrontend("Menu_Navigate", "Phone_SoundSet_Default"));
 		}
 
 		public void Stop()

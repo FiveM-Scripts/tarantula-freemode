@@ -26,7 +26,7 @@ namespace Freeroam.Freemode.Phone
 					phoneScaleform = new Scaleform("CELLPHONE_IFRUIT");
 					PhoneState.PhoneScaleform = phoneScaleform;
 					PhoneState.IsShown = true;
-					Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default");
+					Audio.ReleaseSound(Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default"));
 					API.SetMobilePhonePosition(58f, -21f, -60f);
 					API.SetMobilePhoneRotation(-90f, 0f, 0f, 0);
 					API.SetMobilePhoneScale(285f);

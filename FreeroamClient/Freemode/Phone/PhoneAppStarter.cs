@@ -32,7 +32,7 @@ namespace Freeroam.Freemode.Phone
 			if (currentApp != null)
 			{
 				currentApp.Stop();
-				Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael");
+				Audio.ReleaseSound(Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael"));
 				currentApp = null;
 			}
 		}

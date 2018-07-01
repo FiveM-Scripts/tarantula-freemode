@@ -14,8 +14,8 @@ namespace Freeroam.Freemode
 		private MenuPool menuPool;
 		private UIMenu mainMenu;
 		private UIMenuListItem quickBlipItem;
-		private UIMenuItem killYourselfItem;
 		private UIMenuItem toggleCeoItem;
+		private UIMenuItem killYourselfItem;
 		private bool menuVisible;
 
 		public FreemodeMenu()
@@ -28,17 +28,28 @@ namespace Freeroam.Freemode
 			};
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
+			toggleCeoItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_CEO);
+			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
+			{
+				if (item == toggleCeoItem)
+				{
+					if (OrganizationsHolder.GetPlayerOrganization(Game.Player) == OrganizationType.NONE)
+					{
+						OrganizationType freeOrganizationType = OrganizationsHolder.GetNextEmptyOrganization();
+						if (freeOrganizationType == OrganizationType.NONE)
+							Screen.ShowNotification(Strings.CLIENT_INTERACTION_ITEM_CEO_NONAVAIL, true);
+						else
+							OrganizationsHolder.SetPlayerOrganization(freeOrganizationType);
+					}
+					else
+						OrganizationsHolder.SetPlayerOrganization(OrganizationType.NONE);
+				}
+			});
 			killYourselfItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_KYS);
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == killYourselfItem)
 					Game.PlayerPed.Kill();
-			});
-			toggleCeoItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_CEO);
-			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
-			{
-				if (item == toggleCeoItem)
-					Screen.ShowNotification("👻");
 			});
 
 			Tick += OnTick;
@@ -79,8 +90,8 @@ namespace Freeroam.Freemode
 							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;
 						});
 						mainMenu.AddItem(quickBlipItem);
-						mainMenu.AddItem(killYourselfItem);
 						mainMenu.AddItem(toggleCeoItem);
+						mainMenu.AddItem(killYourselfItem);
 						mainMenu.CurrentSelection = 0;
 					}
 				}
