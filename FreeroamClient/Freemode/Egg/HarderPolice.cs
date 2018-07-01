@@ -11,6 +11,8 @@ namespace Freeroam.Freemode.Egg
 	{
 		public HarderPolice()
 		{
+			EntityDecoration.RegisterProperty(Decors.COP_WEAPONIZED, DecorationType.Bool);
+
 			Tick += OnTick;
 		}
 
@@ -36,16 +38,16 @@ namespace Freeroam.Freemode.Egg
 							WeaponHash[] possibleWeapons;
 							if (pedType == 6)
 								possibleWeapons = new WeaponHash[] {WeaponHash.PistolMk2, WeaponHash.Pistol50, WeaponHash.CombatPistol, WeaponHash.HeavyPistol,
-								WeaponHash.VintagePistol, WeaponHash.APPistol, WeaponHash.StunGun, WeaponHash.BullpupShotgun, WeaponHash.SMG, WeaponHash.SMGMk2,
-								WeaponHash.AssaultSMG, WeaponHash.CombatPDW};
+									WeaponHash.VintagePistol, WeaponHash.APPistol, WeaponHash.StunGun, WeaponHash.BullpupShotgun, WeaponHash.SMG, WeaponHash.SMGMk2,
+									WeaponHash.AssaultSMG, WeaponHash.CombatPDW};
 							else if (pedType == 27)
 								possibleWeapons = new WeaponHash[] {WeaponHash.APPistol, WeaponHash.SMGMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine,
-								WeaponHash.PumpShotgun, WeaponHash.BullpupRifle, WeaponHash.AdvancedRifle, WeaponHash.MarksmanRifle, WeaponHash.AssaultShotgun,
-								WeaponHash.HeavyShotgun, WeaponHash.SniperRifle, WeaponHash.HeavySniper, WeaponHash.HeavySniperMk2};
+									WeaponHash.PumpShotgun, WeaponHash.BullpupRifle, WeaponHash.AdvancedRifle, WeaponHash.MarksmanRifle, WeaponHash.AssaultShotgun,
+									WeaponHash.HeavyShotgun, WeaponHash.SniperRifle, WeaponHash.HeavySniper, WeaponHash.HeavySniperMk2};
 							else
 								possibleWeapons = new WeaponHash[] {WeaponHash.PumpShotgun, WeaponHash.AssaultShotgun, WeaponHash.HeavyShotgun, WeaponHash.CombatPDW,
-								WeaponHash.AssaultRifle, WeaponHash.AssaultRifleMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine, WeaponHash.AdvancedRifle,
-								WeaponHash.MG, WeaponHash.CombatMG, WeaponHash.CombatMGMk2, WeaponHash.Minigun, WeaponHash.RPG};
+									WeaponHash.AssaultRifle, WeaponHash.AssaultRifleMk2, WeaponHash.CarbineRifleMk2, WeaponHash.SpecialCarbine, WeaponHash.AdvancedRifle,
+									WeaponHash.MG, WeaponHash.CombatMG, WeaponHash.CombatMGMk2, WeaponHash.Minigun, WeaponHash.RPG};
 							ped.Weapons.Give(possibleWeapons[API.GetRandomIntInRange(0, possibleWeapons.Count())], int.MaxValue, false, true);
 						}
 						ped._SetDecor(Decors.COP_WEAPONIZED, true);
