@@ -2,6 +2,8 @@
 
 A FiveM resource with the aim to create a fully featured Freemode gamemode, similar to GTA:O.
 
+`dist` contains the installable resource containing the newest gamemode version.
+
 License
 -------
 
