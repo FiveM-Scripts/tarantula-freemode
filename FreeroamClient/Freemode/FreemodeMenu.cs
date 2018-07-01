@@ -30,19 +30,10 @@ namespace Freeroam.Freemode
 			menuPool.Add(mainMenu);
 
 			killYourselfItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_KYS);
-			killYourselfItem.SetRightLabel("$500");
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == killYourselfItem)
-				{
-					if (Money.Amount < 500)
-						Screen.ShowNotification(Strings.CLIENT_INTERACTION_ITEM_KYS_NO_MONEY);
-					else
-					{
-						Game.PlayerPed.Kill();
-						Money.RemoveMoney(500);
-					}
-				}
+					Game.PlayerPed.Kill();
 			});
 
 			Tick += OnTick;
