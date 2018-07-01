@@ -26,7 +26,7 @@ namespace Freeroam.Freemode.Egg
 					&& !API.IsPedAPlayer(aimedEntityHandle))
 				{
 					Ped aimedPed = new Ped(aimedEntityHandle);
-					string response = "GENERIC_INSULT_HIGH";
+					string response;
 					switch (API.GetRandomIntInRange(0, 3))
 					{
 						case 0:
@@ -34,6 +34,9 @@ namespace Freeroam.Freemode.Egg
 							break;
 						case 1:
 							response = "GENERIC_INSULT_MED";
+							break;
+						default:
+							response = "GENERIC_INSULT_HIGH";
 							break;
 					}
 					aimedPed.PlayAmbientSpeech(response, SpeechModifier.ForceShouted);
