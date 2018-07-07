@@ -31,7 +31,7 @@ namespace Freeroam.Freemode.Egg
 
 						if (!ped._HasDecor(Decors.COP_WEAPONIZED))
 						{
-							if (API.GetRandomIntInRange(0, 101) == 100)
+							if (API.GetRandomIntInRange(0, 101) < 50)
 							{
 								WeaponHash[] possibleWeapons;
 								if (pedType == 6)
