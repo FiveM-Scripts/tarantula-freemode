@@ -84,19 +84,19 @@ namespace Freeroam.Freemode
 			{
 				case OrganizationType.ONE:
 					newGroup = RelationshipsHolder.PlayerOrganization1;
-					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_ENTER);
+					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_CREATE);
 					break;
 				case OrganizationType.TWO:
 					newGroup = RelationshipsHolder.PlayerOrganization2;
-					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_ENTER);
+					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_CREATE);
 					break;
 				case OrganizationType.THREE:
 					newGroup = RelationshipsHolder.PlayerOrganization3;
-					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_ENTER);
+					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_CREATE);
 					break;
 				case OrganizationType.FOUR:
 					newGroup = RelationshipsHolder.PlayerOrganization4;
-					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_ENTER);
+					ShowOrganizationUpdateEffect(Strings.CLIENT_ORG_CREATE);
 					break;
 				default:
 					newGroup = RelationshipsHolder.Player;

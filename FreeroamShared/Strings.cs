@@ -30,7 +30,7 @@
 		public const string CLIENT_INTERACTION_ITEM_CEO = "Toggle CEO";
 		public const string CLIENT_INTERACTION_ITEM_CEO_NONAVAIL = "~r~Too many active organizations; Try again later.";
 
-		public const string CLIENT_ORG_ENTER = "~y~You joined an organization";
+		public const string CLIENT_ORG_CREATE = "~y~You created a new organization";
 		public const string CLIENT_ORG_LEAVE = "~y~You left the organization";
 
 		public const string CLIENT_MISSION_LOSE_WANTED = "Lose your Wanted Level.";
