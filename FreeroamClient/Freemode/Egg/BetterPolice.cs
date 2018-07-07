@@ -29,9 +29,6 @@ namespace Freeroam.Freemode.Egg
 						ped.FiringPattern = FiringPattern.FullAuto;
 						ped.ShootRate = 1;
 
-						if (Game.PlayerPed.IsDead)
-							ped.Task.ShootAt(Game.PlayerPed, 200);
-
 						if (!ped._HasDecor(Decors.COP_WEAPONIZED))
 						{
 							if (API.GetRandomIntInRange(0, 101) == 100)
