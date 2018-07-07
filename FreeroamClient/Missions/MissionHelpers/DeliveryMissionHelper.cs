@@ -39,7 +39,7 @@ namespace Freeroam.Missions.MissionHelpers
 		{
 			if (deliveryCar._IsBroken())
 			{
-				MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_DESTROYED, vehicleLabel));
+				MissionHelper.DrawTaskSubtitle(String.Format(Strings.MISSION_DELIVERY_DESTROYED, vehicleLabel));
 				MissionStarter.RequestStopCurrentMission();
 			}
 		}
@@ -57,7 +57,7 @@ namespace Freeroam.Missions.MissionHelpers
 			{
 				if (!wantedLevelWarned)
 				{
-					MissionHelper.DrawTaskSubtitle(Strings.CLIENT_MISSION_LOSE_WANTED);
+					MissionHelper.DrawTaskSubtitle(Strings.MISSION_LOSE_WANTED);
 					importBlip.Alpha = 0;
 					importBlip.ShowRoute = false;
 					wantedLevelWarned = true;
@@ -70,7 +70,7 @@ namespace Freeroam.Missions.MissionHelpers
 				{
 					if (!insideCar)
 					{
-						MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_RETURN_TO_WAREHOUSE, vehicleLabel));
+						MissionHelper.DrawTaskSubtitle(String.Format(Strings.MISSION_DELIVERY_RETURN_TO_WAREHOUSE, vehicleLabel));
 						deliveryCar.AttachedBlip.Alpha = 0;
 						deliveryCar.AttachedBlip.ShowRoute = false;
 						importBlip.Alpha = 255;
@@ -82,7 +82,7 @@ namespace Freeroam.Missions.MissionHelpers
 				{
 					if (insideCar)
 					{
-						MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_RETURN_TO_VEHICLE, vehicleLabel));
+						MissionHelper.DrawTaskSubtitle(String.Format(Strings.MISSION_DELIVERY_RETURN_TO_VEHICLE, vehicleLabel));
 						deliveryCar.AttachedBlip.Alpha = 255;
 						deliveryCar.AttachedBlip.ShowRoute = true;
 						importBlip.Alpha = 0;

@@ -26,9 +26,9 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		{
 			public static Contact[] Contacts { get; } =
 			{
-				new Contact(Strings.CLIENT_PHONE_APP_CONTACTS_ASSISTANT, new Dictionary<string, Action>
+				new Contact(Strings.PHONE_APP_CONTACTS_ASSISTANT, new Dictionary<string, Action>
 				{
-					{ Strings.CLIENT_PHONE_APP_PLAYERLIST_SEND, new Action(async () =>
+					{ Strings.PHONE_APP_PLAYERLIST_SEND, new Action(async () =>
 						{
 							inputBlocked = true;
 							string message = await Game.GetUserInput(60);
@@ -36,11 +36,11 @@ namespace Freeroam.Freemode.Phone.AppCollection
 							{
 								message = message.Trim();
 								if (message.Length == 0)
-									Screen.ShowNotification(Strings.CLIENT_PHONE_APP_PLAYERLIST_SEND_NO_MSG);
+									Screen.ShowNotification(Strings.PHONE_APP_PLAYERLIST_SEND_NO_MSG);
 								else
 								{
 									BaseScript.TriggerServerEvent(Events.MESSAGE_FORWARD_ASSISTANT, message);
-									Screen.ShowNotification(Strings.CLIENT_PHONE_APP_PLAYERLIST_SENT);
+									Screen.ShowNotification(Strings.PHONE_APP_PLAYERLIST_SENT);
 								}
 							}
 							inputBlocked = false;
@@ -73,7 +73,7 @@ namespace Freeroam.Freemode.Phone.AppCollection
 			else
 				foreach (Contact contact in ContactsHolder.Contacts)
 					phoneScaleform.CallFunction("SET_DATA_SLOT", 13, slot++, -1, contact.Name);
-			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedContact.Name : Strings.CLIENT_PHONE_APP_CONTACTS);
+			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedContact.Name : Strings.PHONE_APP_CONTACTS);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", inSubMenu ? 2 : 13, selected);
 
 			if (!inputBlocked)

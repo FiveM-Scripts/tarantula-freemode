@@ -8,7 +8,7 @@ namespace Freeroam
 	{
 		public PauseMenuTitleHandler()
 		{
-			API.AddTextEntry("FE_THDR_GTAO", Strings.CLIENT_FE_THDR_GTAO);
+			API.AddTextEntry("FE_THDR_GTAO", Strings.FE_THDR_GTAO);
 		}
 	}
 }

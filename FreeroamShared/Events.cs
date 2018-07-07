@@ -9,6 +9,6 @@
 		public const string MESSAGE_FORWARD_ASSISTANT = "_forwardIdiotMessage";
 		public const string MESSAGE_FORWARD_PLAYER = "_forwardPlayerMessage";
 
-		public const string SERVER_DROPPED = "_init";
+		public const string SERVER_INIT = "_init";
 	}
 }

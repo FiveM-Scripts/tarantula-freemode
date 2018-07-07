@@ -20,8 +20,8 @@ namespace Freeroam.Warehouses
 		public WarehouseMenu()
 		{
 			menuPool = new MenuPool();
-			actionMenu = new UIMenu(Strings.CLIENT_WAREHOUSE_MENU_TITLE, Strings.CLIENT_WAREHOUSE_MENU_SUBTITLE);
-			stealVehicleItem = new UIMenuItem(Strings.CLIENT_WAREHOUSE_MENU_ITEM_STEAL);
+			actionMenu = new UIMenu(Strings.WAREHOUSE_MENU_TITLE, Strings.WAREHOUSE_MENU_SUBTITLE);
+			stealVehicleItem = new UIMenuItem(Strings.WAREHOUSE_MENU_ITEM_STEAL);
 			actionMenu.AddItem(stealVehicleItem);
 			menuPool.Add(actionMenu);
 

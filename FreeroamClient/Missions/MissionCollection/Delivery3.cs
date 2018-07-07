@@ -34,7 +34,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.Alpha = 0;
 
-			MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_LOCATE, deliveryCar._GetLabel()));
+			MissionHelper.DrawTaskSubtitle(String.Format(Strings.MISSION_DELIVERY_LOCATE, deliveryCar._GetLabel()));
 			BaseScript.TriggerEvent("mtracker:settargets", new int[] { deliveryCar.Handle });
 			BaseScript.TriggerEvent("mtracker:start");
 		}

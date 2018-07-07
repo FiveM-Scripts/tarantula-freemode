@@ -19,11 +19,11 @@ namespace Freeroam
 			await Delay(5000);
 
 			if (MissionState.MissionRunning)
-				API.SetRichPresence(Strings.CLIENT_RP_MISSION);
+				API.SetRichPresence(Strings.RP_MISSION);
 			else if (WarehouseState.IsInsideWarehouse)
-				API.SetRichPresence(Strings.CLIENT_RP_WAREHOUSE);
+				API.SetRichPresence(Strings.RP_WAREHOUSE);
 			else
-				API.SetRichPresence(Strings.CLIENT_RP_FREEROAM);
+				API.SetRichPresence(Strings.RP_FREEROAM);
 		}
 	}
 }

@@ -21,14 +21,14 @@ namespace Freeroam.Freemode
 		public FreemodeMenu()
 		{
 			menuPool = new MenuPool();
-			mainMenu = new UIMenu(Strings.CLIENT_INTERACTION_TITLE, Strings.CLIENT_INTERACTION_SUBTITLE)
+			mainMenu = new UIMenu(Strings.INTERACTION_TITLE, Strings.INTERACTION_SUBTITLE)
 			{
 				MouseControlsEnabled = false,
 				ControlDisablingEnabled = false
 			};
 			mainMenu.DisableInstructionalButtons(true);
 			menuPool.Add(mainMenu);
-			toggleCeoItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_CEO);
+			toggleCeoItem = new UIMenuItem(Strings.INTERACTION_ITEM_CEO);
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == toggleCeoItem)
@@ -37,7 +37,7 @@ namespace Freeroam.Freemode
 					{
 						OrganizationType freeOrganizationType = OrganizationsHolder.GetNextEmptyOrganization();
 						if (freeOrganizationType == OrganizationType.NONE)
-							Screen.ShowNotification(Strings.CLIENT_INTERACTION_ITEM_CEO_NONAVAIL, true);
+							Screen.ShowNotification(Strings.INTERACTION_ITEM_CEO_NONAVAIL, true);
 						else
 							OrganizationsHolder.SetPlayerOrganization(freeOrganizationType);
 					}
@@ -45,7 +45,7 @@ namespace Freeroam.Freemode
 						OrganizationsHolder.SetPlayerOrganization(OrganizationType.NONE);
 				}
 			});
-			killYourselfItem = new UIMenuItem(Strings.CLIENT_INTERACTION_ITEM_KYS);
+			killYourselfItem = new UIMenuItem(Strings.INTERACTION_ITEM_KYS);
 			mainMenu.OnItemSelect += new ItemSelectEvent((menu, item, pos) =>
 			{
 				if (item == killYourselfItem)
@@ -84,7 +84,7 @@ namespace Freeroam.Freemode
 					{
 						menuVisible = true;
 						mainMenu.Clear();
-						quickBlipItem = new UIMenuListItem(Strings.CLIENT_INTERACTION_ITEM_QUICK_NAV, World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
+						quickBlipItem = new UIMenuListItem(Strings.INTERACTION_ITEM_QUICK_NAV, World.GetAllBlips().Select(blip => blip.Type as dynamic).ToList(), 0);
 						quickBlipItem.OnListSelected += new ItemListEvent((sender, pos) =>
 						{
 							World.WaypointPosition = World.GetAllBlips().Where(blip => blip.Type == quickBlipItem.IndexToItem(pos)).First().Position;

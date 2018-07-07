@@ -68,7 +68,7 @@ namespace Freeroam.Missions.MissionCollection
 			deliveryCarBlip.Color = BlipColor.Blue;
 			deliveryCarBlip.ShowRoute = true;
 
-			MissionHelper.DrawTaskSubtitle(String.Format(Strings.CLIENT_MISSION_DELIVERY_STEAL, deliveryCar._GetLabel()));
+			MissionHelper.DrawTaskSubtitle(String.Format(Strings.MISSION_DELIVERY_STEAL, deliveryCar._GetLabel()));
 		}
 
 		public async Task OnTick()
