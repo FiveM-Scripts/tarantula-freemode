@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Freemode\Egg\HarderPolice.cs" />
+    <Compile Include="Freemode\Egg\BetterPolice.cs" />
     <Compile Include="Freemode\Egg\TriggeredPeds.cs" />
     <Compile Include="Freemode\SessionPlayerBlips.cs" />
     <Compile Include="Freemode\Display\Info.cs" />

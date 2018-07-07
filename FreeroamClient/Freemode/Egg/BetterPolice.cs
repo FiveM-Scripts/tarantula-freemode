@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Freeroam.Freemode.Egg
 {
-	class HarderPolice : BaseScript
+	class BetterPolice : BaseScript
 	{
-		public HarderPolice()
+		public BetterPolice()
 		{
 			EntityDecoration.RegisterProperty(Decors.COP_WEAPONIZED, DecorationType.Bool);
 
