@@ -8,7 +8,5 @@
 		public const string MESSAGE_FORWARD = "_forwardMessage";
 		public const string MESSAGE_FORWARD_ASSISTANT = "_forwardIdiotMessage";
 		public const string MESSAGE_FORWARD_PLAYER = "_forwardPlayerMessage";
-
-		public const string SERVER_INIT = "_init";
 	}
 }

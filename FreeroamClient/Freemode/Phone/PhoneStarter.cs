@@ -1,6 +1,5 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Freeroam.Freemode.Phone.AppCollection;
 using System.Threading.Tasks;
 
 namespace Freeroam.Freemode.Phone
@@ -8,6 +7,7 @@ namespace Freeroam.Freemode.Phone
 	public class PhoneStarter : BaseScript
 	{
 		private static Scaleform phoneScaleform;
+		private float phonePullUpProgress;
 
 		public PhoneStarter()
 		{
@@ -27,11 +27,10 @@ namespace Freeroam.Freemode.Phone
 					PhoneState.PhoneScaleform = phoneScaleform;
 					PhoneState.IsShown = true;
 					Audio.ReleaseSound(Audio.PlaySoundFrontend("Pull_Out", "Phone_SoundSet_Default"));
-					API.SetMobilePhonePosition(58f, -21f, -60f);
-					API.SetMobilePhoneRotation(-90f, 0f, 0f, 0);
 					API.SetMobilePhoneScale(285f);
 					API.CreateMobilePhone(0);
 
+					phonePullUpProgress = 20f;
 					PhoneAppStarter.MainApp();
 				}
 			}
@@ -40,6 +39,10 @@ namespace Freeroam.Freemode.Phone
 
 			if (PhoneState.IsShown)
 			{
+				API.SetMobilePhonePosition(58f, -21f - phonePullUpProgress, -60f);
+				API.SetMobilePhoneRotation(-90f, -phonePullUpProgress * 4, 0f, 0);
+				phonePullUpProgress = phonePullUpProgress - 3 < 1 ? 0 : phonePullUpProgress - 3;
+
 				int h = 0, m = 0, s = 0;
 				API.NetworkGetServerTime(ref h, ref m, ref s);
 				phoneScaleform.CallFunction("SET_TITLEBAR_TIME", h, m);
