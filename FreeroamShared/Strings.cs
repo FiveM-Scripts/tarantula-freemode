@@ -21,6 +21,18 @@
 		public const string PHONE_APP_CONTACTS_ASSISTANT = "Assistant";
 		public const string PHONE_APP_RADIO = "Radio";
 		public const string PHONE_APP_TRACKIFY = "Trackify";
+		public const string PHONE_APP_SETTINGS = "Settings";
+		public const string PHONE_APP_SETTINGS_THEME = "Theme";
+		public const string PHONE_APP_SETTINGS_THEME_1 = "Heaven";
+		public const string PHONE_APP_SETTINGS_THEME_2 = "Forest";
+		public const string PHONE_APP_SETTINGS_THEME_3 = "Hell";
+		public const string PHONE_APP_SETTINGS_THEME_4 = "Sunset";
+		public const string PHONE_APP_SETTINGS_THEME_5 = "Metal";
+		public const string PHONE_APP_SETTINGS_THEME_6 = "Nightlife";
+		public const string PHONE_APP_SETTINGS_THEME_7 = "Sweet";
+		public const string PHONE_APP_SETTINGS_ABOUT = "About";
+		public const string PHONE_APP_SETTINGS_ABOUT_AUTHOR_PREFIX = "Gamemode By";
+		public const string PHONE_APP_SETTINGS_ABOUT_AUTHOR = "Scammer";
 
 		public const string INTERACTION_TITLE = "Interaction";
 		public const string INTERACTION_SUBTITLE = "Go get a Hobby";

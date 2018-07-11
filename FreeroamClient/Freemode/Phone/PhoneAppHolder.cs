@@ -32,7 +32,7 @@ namespace Freeroam.Freemode.Phone
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, Strings.PLACEHOLDER, null, true),
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, Strings.PLACEHOLDER, null, true),
 			new PhoneApp(PhoneAppIcon.APP_EMPTY, Strings.PLACEHOLDER, null, true),
-			new PhoneApp(PhoneAppIcon.APP_EMPTY, Strings.PLACEHOLDER, null, true)
+			new PhoneApp(PhoneAppIcon.APP_SETTINGS, Strings.PHONE_APP_SETTINGS, typeof(AppSettings))
 		};
 	}
 }

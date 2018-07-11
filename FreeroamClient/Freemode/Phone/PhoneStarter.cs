@@ -47,8 +47,8 @@ namespace Freeroam.Freemode.Phone
 				API.NetworkGetServerTime(ref h, ref m, ref s);
 				phoneScaleform.CallFunction("SET_TITLEBAR_TIME", h, m);
 				phoneScaleform.CallFunction("SET_SLEEP_MODE", false);
-				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", 0);
-				phoneScaleform.CallFunction("SET_THEME", 5);
+				phoneScaleform.CallFunction("SET_BACKGROUND_IMAGE", PhoneState.PhoneWallpaper);
+				phoneScaleform.CallFunction("SET_THEME", PhoneState.PhoneTheme);
 				Vector3 playerPos = Game.PlayerPed.Position;
 				phoneScaleform.CallFunction("SET_SIGNAL_STRENGTH", API.GetZoneScumminess(API.GetZoneAtCoords(playerPos.X, playerPos.Y, playerPos.Z)));
 				

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Freemode\Egg\BetterPolice.cs" />
     <Compile Include="Freemode\Egg\TriggeredPeds.cs" />
+    <Compile Include="Freemode\Phone\AppCollection\AppSettings.cs" />
     <Compile Include="Freemode\SessionPlayerBlips.cs" />
     <Compile Include="Freemode\Display\Info.cs" />
     <Compile Include="Freemode\Display\Money.cs" />
