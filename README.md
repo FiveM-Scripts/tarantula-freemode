@@ -1,5 +1,7 @@
 # Tarantula-Freemode
 
+<a href="https://discord.gg/jmReBWJ" title="Chat on Discord"><img alt="Discord Status" src="https://discordapp.com/api/guilds/452946935587012658/widget.png"></a>
+
 A FiveM resource with the aim to create a fully featured Freemode gamemode, similar to GTA:O.
 
 `dist` contains the installable resource containing the newest gamemode version.
