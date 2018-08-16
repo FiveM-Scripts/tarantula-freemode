@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using CitizenFX.Core;
 using FreeroamShared;
 
-using static CitizenFX.Core.Native.API;
-
 namespace Freeroam.Freemode.Phone.AppCollection
 {
 	class AppSettings : IPhoneApp
