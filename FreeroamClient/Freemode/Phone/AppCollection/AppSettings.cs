@@ -70,7 +70,6 @@ namespace Freeroam.Freemode.Phone.AppCollection
 		private int selected;
 		private bool inSubMenu;
 		private Setting selectedSettings;
-		private static bool inputBlocked;
 
 		public void Init(Scaleform phoneScaleform)
 		{
@@ -92,44 +91,41 @@ namespace Freeroam.Freemode.Phone.AppCollection
 			phoneScaleform.CallFunction("SET_HEADER", inSubMenu ? selectedSettings.Name : Strings.PHONE_APP_SETTINGS);
 			phoneScaleform.CallFunction("DISPLAY_VIEW", 13, selected);
 
-			if (!inputBlocked)
+			bool pressed = false;
+			if (Game.IsControlJustPressed(0, Control.PhoneUp) && slot > 0)
 			{
-				bool pressed = false;
-				if (Game.IsControlJustPressed(0, Control.PhoneUp) && slot > 0)
-				{
-					if (--selected < 0)
-						selected = slot - 1;
-					pressed = true;
-				}
-				else if (Game.IsControlJustPressed(0, Control.PhoneDown) && slot > 0)
-				{
-					if (++selected > slot - 1)
-						selected = 0;
-					pressed = true;
-				}
-				else if (Game.IsControlJustPressed(0, Control.PhoneSelect) && slot > 0)
-				{
-					if (!inSubMenu)
-					{
-						inSubMenu = true;
-						selectedSettings = SettingsHolder.Settings[selected];
-						phoneScaleform.CallFunction("SET_DATA_SLOT_EMPTY", 13);
-					}
-					else
-						selectedSettings.Items.ElementAt(selected).Value.Invoke();
+				if (--selected < 0)
+					selected = slot - 1;
+				pressed = true;
+			}
+			else if (Game.IsControlJustPressed(0, Control.PhoneDown) && slot > 0)
+			{
+				if (++selected > slot - 1)
 					selected = 0;
-					pressed = true;
-				}
-				else if (Game.IsControlJustPressed(0, Control.PhoneCancel))
+				pressed = true;
+			}
+			else if (Game.IsControlJustPressed(0, Control.PhoneSelect) && slot > 0)
+			{
+				if (!inSubMenu)
 				{
-					if (!inSubMenu)
-						PhoneAppStarter.MainApp();
-					else
-					{
-						Audio.ReleaseSound(Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael"));
-						inSubMenu = false;
-						phoneScaleform.CallFunction("SET_DATA_SLOT_EMPTY", 13);
-					}
+					inSubMenu = true;
+					selectedSettings = SettingsHolder.Settings[selected];
+					phoneScaleform.CallFunction("SET_DATA_SLOT_EMPTY", 13);
+				}
+				else
+					selectedSettings.Items.ElementAt(selected).Value.Invoke();
+				selected = 0;
+				pressed = true;
+			}
+			else if (Game.IsControlJustPressed(0, Control.PhoneCancel))
+			{
+				if (!inSubMenu)
+					PhoneAppStarter.MainApp();
+				else
+				{
+					Audio.ReleaseSound(Audio.PlaySoundFrontend("Hang_Up", "Phone_SoundSet_Michael"));
+					inSubMenu = false;
+					phoneScaleform.CallFunction("SET_DATA_SLOT_EMPTY", 13);
 				}
 
 				if (pressed)

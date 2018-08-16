@@ -18,6 +18,7 @@ namespace Freeroam.Missions.MissionCollection
 		public async Task Prepare()
 		{
 			deliveryCar = await MissionHelper.CreateRobustVehicle(VehicleHash.Schafter5, new Vector3(-2307.3f, 369.3f, 174.2f), 323.8f);
+			API.SetEntityLoadCollisionFlag(deliveryCar.Handle, true);
 
 			missionMusic = new MissionMusic();
 			missionMusic.PlayStartMusic();
