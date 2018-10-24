@@ -1,4 +1,8 @@
-# Tarantula-Freemode
+# **Abandoned in favour of [venomous-freemode](https://github.com/FiveM-Scripts/venomous-freemode)!**
+
+---
+
+## Tarantula-Freemode
 
 <a href="https://discord.gg/jmReBWJ" title="Chat on Discord"><img alt="Discord Status" src="https://discordapp.com/api/guilds/452946935587012658/widget.png"></a>
 
